@@ -1,4 +1,4 @@
-/* Case / Sharing detail — shared so View Transitions + Vite don't keep stale page <style> sheets. */
+/* Case detail — shared so View Transitions + Vite don't keep stale page <style> sheets. */
 
 .case-wrap {
   width: min(100% - 2 * var(--rail), var(--max));

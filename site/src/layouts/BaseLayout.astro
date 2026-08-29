@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import { withBase } from '../utils/url';
 import '../styles/global.css';
 
 interface Props {
@@ -8,8 +9,8 @@ interface Props {
 }
 
 const {
-  title = '김치운 · 품질을 설계하는 QA Engineer',
-  description = '김치운 — 품질을 설계하는 QA Engineer. Web3·거래소·디지털 트윈·AI SaaS · 지식 전수.',
+  title = '김정석 · Embedded Firmware Engineer',
+  description = '김정석 — 재사용 가능한 구조와 안정적인 시스템을 설계하는 임베디드 개발자. STM32·ESP32 · LoRaWAN · LwM2M · FOTA.',
 } = Astro.props;
 ---
 
@@ -24,17 +25,13 @@ const {
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <ClientRouter />
   </head>
   <body>
     <!--
-      THESIS: Cinema Frame — image-led scroll film, not resume checklist or empty minimal type.
-      OWN-WORLD: Mist #f4f5f7 / sheet #fff / ink #111318 / teal #1a5f7a / brass #c8a45a; Pretendard; large media + sticky scrub.
-      STORY: Recruiter sees who, proof numbers, featured case, crossed projects, career, sharing, contact.
-      FIRST VIEWPORT: Asymmetric portrait + name/headline/summary; no CTA strip.
-      FORM: Cinema Frame (plan A); seed carried from redesign brief.
-      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+      THESIS: Embedded engineer portfolio — technical credibility, project depth, operational stability.
+      OWN-WORLD: Slate #eef0f2 / ink #0f1419 / teal #1a4a6b / brass #c8762a; Pretendard; project-led scroll.
     -->
     <slot />
     <script>

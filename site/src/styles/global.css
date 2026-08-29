@@ -1,13 +1,13 @@
 :root {
-  --mist: #f4f5f7;
-  --shift: #ebecef;
+  --mist: #eef0f2;
+  --shift: #e2e5e9;
   --sheet: #ffffff;
-  --ink: #111318;
-  --mute: #5c6570;
-  --line: rgb(17 19 24 / 0.12);
-  --teal: #1a5f7a;
-  --brass: #c8a45a;
-  --night: #14161c;
+  --ink: #0f1419;
+  --mute: #4a5568;
+  --line: rgb(15 20 25 / 0.11);
+  --teal: #1a4a6b;
+  --brass: #c8762a;
+  --night: #0c1017;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --font: "Pretendard Variable", "Apple SD Gothic Neo", "Noto Sans KR",
     sans-serif;

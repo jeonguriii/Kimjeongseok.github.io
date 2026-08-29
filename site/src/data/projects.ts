@@ -1,3 +1,11 @@
+export type Troubleshooting = {
+  title: string;
+  problem: string;
+  analysis?: string;
+  solution: string;
+  result: string;
+};
+
 export type Project = {
   slug: string;
   published: boolean;
@@ -9,7 +17,6 @@ export type Project = {
   oneLiner: string;
   role: string;
   thumbnail: string;
-  /** 프로젝트 이야기 전에 — 이 제품/서비스가 무엇인지 */
   service: {
     name: string;
     tagline: string;
@@ -21,6 +28,7 @@ export type Project = {
   background: string[];
   questions?: string[];
   work: { title: string; items: string[] }[];
+  troubleshooting?: Troubleshooting[];
   verification: { area: string; detail: string }[];
   tooling: string[];
   contribution: string[];
@@ -29,423 +37,583 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: 'klip-flutter',
+    slug: 'yangju-sports-lighting',
     published: true,
-    title: 'Klip Wallet Native → Flutter 전환',
-    shortTitle: 'Klip Flutter 전환',
-    client: 'Klip 사용자',
-    company: '안랩 블록체인 컴퍼니(ABC)',
-    periodHint: 'ABC · Klip Wallet · 2026 · QA 엔지니어',
+    title: '[양주도시공사] 체육시설 스마트 조명 및 전력 관리 시스템',
+    shortTitle: '양주 체육시설 스마트 조명',
+    client: '양주도시공사',
+    company: '(주)트로닉스',
+    periodHint: 'Tronix · e-IoT · 2026.05 — 2026.08 · 펌웨어 5명',
     oneLiner:
-      '장기간 운영된 Native Klip을 Flutter로 전환하며, QA 엔지니어로서 전략·일정·2,500개 테스트 자산·AI 기반 케이스 운영으로 안정적 서비스 전환을 지원한 프로젝트.',
-    role: 'QA 엔지니어 — 전략·일정 · 테스트 엔지니어 2명 분배·리뷰 · 테스트 자산 · AI 프로세스',
-    thumbnail: '/projects/klip-flutter.png',
+      '10개 체육시설의 예약 일정에 맞춰 조명을 자동 제어하고, 실제 소비 전력을 측정·정산하는 IoT 시스템. 전력량 측정, 조명 고장 감지, 캘린더 스케줄, Plug & Play 설치 구조를 추가해 공공시설에 납품.',
+    role: 'FreeRTOS 펌웨어·비즈니스 로직 · CT Sensor 고장 감지 · RS-485 전력량계 · LwM2M · FOTA · Plug & Play',
+    thumbnail: '/projects/yangju-sports-lighting.png',
     service: {
-      name: 'Klip Wallet',
-      tagline: '개인용 Web3 지갑 앱 (안랩 블록체인 컴퍼니)',
+      name: '체육시설 스마트 조명·전력 관리',
+      tagline: '예약 기반 조명 제어 + 소비전력 계측 + 원격 관제',
       points: [
-        '가상자산·NFT를 보관·전송하고, 멀티체인 환경에서 Earn(스테이킹·예치) 등 기능을 쓰는 모바일 월렛이다.',
-        '장기간 Native(Android/iOS)로 운영되어 왔으며, 이 프로젝트는 동일 UX를 유지한 채 앱 기반을 Flutter로 교체하는 대규모 전환이었다.',
-        '인증·지갑·전송·멀티체인·Earn·NFT 등 핵심 플로우가 Native와 Flutter에서 동일하게 동작해야 해, 신규 기능 검증이 아니라 전면 회귀와 아키텍처 안정성 확보가 핵심이었다.',
+        '양주시 10개 체육시설에 예약 일정 연동 자동 조명 제어와 실제 소비 전력 측정·정산 기능을 제공한다.',
+        '기존 e-IoT 플랫폼에 전력량 측정, 조명 고장 감지, 캘린더 기반 자동 제어, Plug & Play 설치 구조를 추가했다.',
+        '시설 관리자가 현장 방문 없이 모바일·PC에서 조명 일정을 제어하고, 전력 사용량·요금 정산 데이터를 활용할 수 있다.',
       ],
     },
     outcomes: [
-      { label: '테스트 자산', before: '분산 관리', after: '약 2,500개 시나리오 기반 운영 체계' },
-      { label: '테스트 운영', before: '개인 경험 의존', after: '역할 기반 QA 운영 체계' },
-      { label: '신규 QA 적응', before: '문서 탐색 중심', after: 'AI 생성·가이드로 러닝커브 단축' },
-      { label: 'QA 협업', before: '개별 진행', after: '일정·역할·리뷰 체계 표준화' },
-      { label: '서비스 전환', before: '품질 리스크 존재', after: 'Flutter 전환 안정적 완료 지원' },
+      { label: '납품', before: '개발 중', after: '양주도시공사 검수 완료 · 10개 시설 적용' },
+      { label: '고장 감지', before: '고정 Threshold', after: '30일 주기 자가 학습형 판단 로직' },
+      { label: '포팅', before: '—', after: '신규 펌웨어 4일 내 완료' },
+      { label: '코드 재사용', before: '—', after: '기존 아키텍처 70% 이상 재사용' },
+      { label: '현장 출장', before: '개발자 매번 방문', after: 'Plug & Play로 출장 리소스 80% 절감' },
     ],
     overview: [
-      '참여 시기 2026. 참여 인력은 QA 엔지니어(본인) 1명, 테스트 엔지니어 2명이었다.',
-      '목적은 기존 Native Klip Wallet을 Flutter로 전환하면서 기존 기능 품질을 유지하고, 신규 아키텍처의 안정성을 확보하는 것이었다.',
-      '단순 신규 기능 검증이 아니라 플랫폼 교체이므로 회귀 범위가 매우 넓었고, 소수 인원으로 높은 품질을 내려면 체계적인 전략·자산 관리·일정 운영이 필수였다.',
+      '프로젝트 인원 5명. FreeRTOS 기반 펌웨어 및 비즈니스 로직 개발을 담당했다.',
+      'CT Sensor/ADC 기반 조명 고장 감지, RS-485 전력량계 연동, 캘린더 스케줄링, LwM2M 통신 안정화, FOTA, Plug & Play 초기화 시퀀스를 구현했다.',
+      '원격 FOTA로 현장 방문 없이 장애 대응이 가능하도록 설계했다.',
     ],
     problem: [
       {
-        heading: '전환 프로젝트의 난이도',
+        heading: '공공 IoT 설치·운영 병목',
         items: [
-          '장기간 운영 Native 앱을 Flutter로 교체 — UX 동일성 + 플랫폼 교체가 동시에 요구됨',
-          'UI·상태 관리·인증·멀티체인 기능이 Native와 Flutter에서 동일해야 함',
-          '회귀 범위가 매우 넓고, QA는 소수 인원이라 리소스 대비 전략이 성패를 가름',
+          '대규모 설치 시 개발자가 현장에서 통신·서버 연결을 수동 확인해야 하는 구조',
+          '조명 고장을 고정 Threshold로만 판단하면 현장별 조명 특성·램프 노후화를 반영하기 어려움',
+          '순차 점등 시 대용량 부하 증가를 스파이크 노이즈로 오인하는 전력 측정 오류',
         ],
       },
     ],
     background: [
-      '무엇을 테스트할 것인가만큼, 어떻게 테스트를 운영할 것인가가 프로젝트 성패를 좌우했다.',
-      '테스트 전략, 테스트 자산(약 2,500개), 팀원 매니지먼트, AI를 활용한 문서·온보딩 효율화가 함께 필요한 과제였다.',
+      '기존 e-IoT 플랫폼의 공통 아키텍처를 경량화해 FreeRTOS 환경에 맞게 AsyncFramework를 적용했다.',
+      '관제 페이지 예약 일정과 연·월·일·요일·시간대 기반 스케줄 제어로 시설 관리 자동화를 목표로 했다.',
     ],
     work: [
       {
-        title: '테스트 전략·인력 운영',
+        title: 'FreeRTOS 기반 경량 펌웨어 구조',
         items: [
-          'Flutter 전환 범위 분석 후 기능별 테스트 전략 수립',
-          '테스트 엔지니어 2명의 업무 분배·일정 관리·리뷰',
-          '우선순위 기반 회귀 테스트 계획, 변경 영향도 분석으로 핵심 영역 집중 검증',
+          '불필요 기능 제거 및 사내 AsyncFramework FreeRTOS 경량화',
+          '연·월·일·요일·시간대 기반 스케줄 제어 로직 구현',
+          '관제 예약 일정과 조명 타워 자동 동작 연동',
         ],
       },
       {
-        title: '테스트 자산 운영·관리',
+        title: 'CT Sensor 자가 학습형 조명 고장 감지',
         items: [
-          '약 2,500개 시나리오 기반 테스트케이스 운영',
-          '기능 추가·정책 변경에 따른 지속 관리, 중복 제거·구조 개선',
-          '회귀 효율을 위한 테스트 세트 구성',
+          'CT Sensor + ADC로 W 단위 소비전력 변환',
+          '초기 점등 후 측정값을 기준값으로 EEPROM 저장',
+          '30일마다 자동 재학습으로 램프 노후화 반영',
+          '관제 서버 Threshold 관리 및 고장 알림 연동',
         ],
       },
       {
-        title: 'AI 기반 테스트케이스 프로세스',
+        title: '소비전력 계측 및 서버 연동',
         items: [
-          '요구사항 기반 테스트케이스 초안 자동 생성',
-          '기존 케이스 중복 분석·시나리오 표준화',
-          '문서 작성 시간 단축, 신규 QA 온보딩 자료 생성',
-          '반복 문서 작업을 줄여 엔지니어가 검증·품질 분석에 집중하도록 개선',
+          'RS-485 전력량계 연동으로 실제 조명 소비전력 측정',
+          'LwM2M Observe로 주기적 서버 전달',
+          '시설별 전력 사용량 분석·요금 정산 데이터 구조 설계',
         ],
       },
       {
-        title: '협업 및 품질 관리',
+        title: 'Plug & Play 설치 구조',
         items: [
-          '개발·기획과 변경사항 리뷰, 이슈 우선순위 조율',
-          'Regression 진행률 관리, 릴리즈 전 품질 리스크 공유',
-          '주요 결함 분석 및 Root Cause Review 참여',
+          'Peripheral Self Check → LTE 연결 → LwM2M Bootstrap → Server Registration → Observe 설정 → 운영 시작',
+          '현장 작업자는 릴레이·전원 결선만으로 설치 완료',
+          '개발자는 관제 시스템에서 접속 상태만 확인',
         ],
+      },
+    ],
+    troubleshooting: [
+      {
+        title: '대용량 조명 부하를 스파이크 노이즈로 오인한 전력 측정 오류',
+        problem:
+          '사내 테스트는 최대 1.2kW였으나 현장 램프 1개가 1.2~1.5kW. 500W 이상 변화를 스파이크로 무시하는 로직이 순차 점등의 정상 1kW+ 부하 증가를 누락시켰다.',
+        solution:
+          '단순 Threshold를 상태 기반 판단으로 변경 — 급격한 변화 시 첫 값 보류, 다음 측정에서 동일 수준 유지 확인 후 실제 부하로 반영.',
+        result:
+          '실제 부하 증가와 순간 노이즈 구분. 당일 운영 종료 후 LwM2M FOTA로 원격 배포해 전력 정산 데이터 누락 방지.',
       },
     ],
     verification: [
-      { area: '인증', detail: '로그인, PIN, 생체인증, OTP, 세션 관리' },
-      { area: 'Wallet', detail: '자산 조회, 지갑 생성, 주소 관리' },
-      { area: '전송', detail: '송금, 수수료 계산, 주소 검증' },
-      { area: '멀티체인', detail: 'Ethereum, Kaia, Solana, XRP 등 체인별 기능' },
-      { area: 'Earn', detail: '스테이킹, 예치, 보상 조회' },
-      { area: 'NFT', detail: 'NFT 조회 및 관리' },
-      { area: '공통', detail: 'Flutter UI, 상태 유지, 네트워크 예외 처리' },
+      { area: '납품', detail: '양주도시공사 검수 완료 · 10개 체육시설 현장 적용' },
+      { area: 'FOTA', detail: '현장 방문 없이 펌웨어 원격 배포·장애 대응' },
+      { area: '설치', detail: 'Plug & Play로 개발자 현장 출장 80% 절감' },
     ],
-    tooling: [
-      '시나리오 기반 테스트케이스 자산(약 2,500개) 운영',
-      'AI — 케이스 초안 생성·중복 분석·온보딩 가이드',
-      '개발·기획 리뷰 / Regression 진행률·리스크 공유 체계',
-    ],
+    tooling: ['FreeRTOS', 'LwM2M', 'LTE Cat.M1', 'RS-485', 'CT Sensor / ADC', 'EEPROM', 'FOTA'],
     contribution: [
-      'QA 엔지니어로서 테스트 전략부터 일정·인력 운영까지 품질 활동을 전반 주도했다.',
-      '약 2,500개 테스트케이스를 지속 관리해 장기 활용 가능한 테스트 자산을 구축했다.',
-      'AI로 케이스 작성·온보딩을 개선해 반복 업무를 줄이고 신규 QA 러닝커브를 단축했다.',
-      '기능 검증을 넘어 프로세스·협업 체계를 개선해 팀 생산성과 품질 수준을 높였다.',
+      'FreeRTOS 펌웨어·비즈니스 로직 전반 개발',
+      '자가 학습형 조명 고장 감지 및 전력 계측 파이프라인 설계',
+      'Plug & Play 초기화 시퀀스로 대규모 설치 자동화',
     ],
     insights: [
-      '대규모 서비스 전환에서는 “무엇을 테스트할 것인가”보다 “어떻게 테스트를 운영할 것인가”가 성패를 가른다.',
-      '개인의 테스트 역량보다 팀 전체의 품질 역량을 끌어올리는 것이, 소수 인원 QA 운영에서 핵심이었다.',
-      '이 프로젝트는 Flutter 전환 QA를 넘어 자산 관리·AI 활용·팀 운영·프로세스 개선이 한곳에 모인 대표 사례다.',
+      '고정 Threshold보다 현장 특성을 학습하는 구조가 장기 운영에 유리하다.',
+      '전력 측정은 단순 필터링이 아니라 상태 기반 판단이 정확도를 높인다.',
+      '설치 자동화는 개발 완료만큼 현장 운영 비용 절감에 기여한다.',
     ],
   },
   {
-    slug: 'beamo-ssv',
+    slug: 'uzbekistan-solar-streetlight',
     published: true,
-    title: '삼성 SSV 디지털 트윈 QA 체계 수립 및 품질 안정화',
-    shortTitle: 'Beamo SSV',
-    client: '삼성물산',
-    company: '3i Inc.',
-    periodHint: '3i · 디지털 트윈',
+    title: '[우즈베키스탄 치르치크] 태양광 기반 스마트 가로등 글로벌 실증',
+    shortTitle: '우즈베키스탄 태양광 가로등',
+    client: '치르치크시',
+    company: '(주)트로닉스',
+    periodHint: 'Tronix · Off-grid · 2026.05 — 2026.07 · 6명',
     oneLiner:
-      '개발 60% 이상 완료된 상태로 투입되어, 테스트 체계·고객 리포트·반도체 공장 현장 필드 테스트까지 품질 구조를 다시 세운 프로젝트.',
-    role: 'QA Engineer — 체계 수립 · 고객 대응 · 현장 필드 테스트',
-    thumbnail: '/projects/beamo-ssv.png',
+      '전력 인프라 부족 지역에 태양광 Off-grid 스마트 가로등 8대·중계기를 구축. MPPT/BMS 원격 모니터링, LoRaWAN·LTE 통신, 현지 망 불안정·배터리 지연 등 운영 제약 대응.',
+    role: 'Zephyr 펌웨어 포팅 · MPPT RS-485 · BMS UART · LTE Watchdog/Auto-Recovery · 현지 교육',
+    thumbnail: '/projects/uzbekistan-solar-streetlight.png',
     service: {
-      name: 'Beamo',
-      tagline: '360° 사진 기반 엔터프라이즈 디지털 트윈 플랫폼 (3i Inc.)',
+      name: '태양광 Off-grid 스마트 가로등',
+      tagline: '독립형 태양광 + 원격 모니터링 + 에너지 절감 스케줄',
       points: [
-        '현장·시설을 360°로 캡처해 디지털 트윈으로 만들고, 원격으로 공간을 탐색·점검·협업할 수 있는 솔루션이다.',
-        'Beamo 포털은 3D Workspace에서 태그·코멘트·측정·비교·안내·화상 통화 등으로 문서화와 팀 커뮤니케이션을 지원한다.',
-        'Beamo 앱은 실내·협소 공간·스트리트 뷰·토지 서베이 등 다양한 환경을 보행만으로도 캡처하고, GPS가 약한 곳에서도 정밀 매핑이 가능하다.',
-        '이 프로젝트의 Beamo SSV(Samsung Site View)는 그 플랫폼을 삼성물산 반도체 공장 현장에 맞춰 도입·검증한 고객 구축 건이다.',
+        '우즈베키스탄 치르치크 외곽에 전력망 없이 태양광·배터리로 구동하는 스마트 가로등 시스템.',
+        'MPPT·BMS 정보를 LoRaWAN·LTE로 관제에 전달하고, 디밍 스케줄로 배터리 사용량을 관리한다.',
+        '환경 센서·Edge AI(Jetson Nano)·교통 카메라까지 확장한 스마트시티 실증.',
       ],
     },
     outcomes: [
-      { label: '테스트 체계', before: '미정립', after: '화면/기능 기준 문서화 완료' },
-      { label: 'QA 사전 결함 발견률', before: '약 60%', after: '약 90% 이상' },
-      { label: '고객 피드백 응답', before: '평균 2~3일', after: '평균 1일 이내' },
-      { label: '문서 전달 방식', before: '비정형(회의/대화)', after: '시나리오 기반 공식 문서·보고서' },
+      { label: '실증', before: '—', after: '가로등 8대·중계기 구축' },
+      { label: '모니터링', before: '—', after: 'MPPT/BMS 원격 모니터링' },
+      { label: '통신', before: '3분 주기 단절', after: 'Watchdog·Auto-Recovery로 장기 안정성' },
+      { label: '운영', before: '본품 배터리 지연', after: '임시 배터리 + 디밍으로 운영 지속' },
     ],
     overview: [
-      '고객사는 삼성물산. 삼성전자가 발주하고 삼성물산이 건설 중인 대규모 반도체 공장에 Beamo 기반 3D 공간 뷰어(SSV)를 도입하는 과제였다.',
-      '반도체 공정 특성상 일반인의 현장 접근이 어렵고, 현장 설명 회의도 고비용·고리스크라, 방문 없이 공정 점검·공간 피드백이 가능한 체계가 필요했다.',
-      '나는 개발이 60% 이상 완료된 상태에서 QA로 투입되어, 테스트 체계 수립부터 고객 대응 리포트, 반도체 공장 건설 현장 필드 테스트까지 전 과정을 수행했다.',
+      '프로젝트 인원 6명. 기존 Zephyr 펌웨어의 태양광 기능 포팅·최적화, MPPT/BMS 드라이버, LTE Watchdog·Auto-Recovery, 현지 교육·장애 대응.',
+      '해외 구축 전 Fault Injection Test로 장애 시나리오를 사전 검증했다.',
     ],
     problem: [
       {
-        heading: '투입 시점의 품질 리스크',
+        heading: '해외 Off-grid 운영 제약',
         items: [
-          '테스트 시나리오·품질 기준 미정립 → 결함 발생 시 대응 기준 부재',
-          '기능은 구현됐으나 예외 조건·권한 분기·실데이터 연동 등 실사용 관점 검증 부족',
-          '고객사의 반복 피드백·QA 결과 요청에 공식 문서·응대 체계가 없어 신뢰도 하락 우려',
+          '현지 이동통신망 품질 불안정으로 LTE 중계기 통신 단절',
+          '본품 배터리 공급 1.5개월 지연 — 차량용 12V 임시 배터리로 운영',
+          '제한된 에너지 환경에서 야간 100% 출력 시 저전압 Shutdown 위험',
         ],
       },
     ],
     background: [
-      '단순 기능 테스트가 아니라, 품질 체계 전반을 세우고 고객 커뮤니케이션까지 포함하는 전방위 QA가 필요한 상황이었다.',
-      '화면 ID·기능 ID·테스트 기준을 직접 정의하고 현장에 적용해야 했으며, 외부로 나가는 모든 QA 자료가 고객 전달용이라는 점에서 기술·문서화·커뮤니케이션이 동시에 요구됐다.',
+      '국내에서 재현하기 어려운 현지 통신·전력 제약 하에서 시스템 안정성을 검증하는 해외 실증 프로젝트.',
+      'RS-485 MPPT, UART BMS, LoRaWAN·LTE 이중 통신망 구조.',
     ],
     work: [
       {
-        title: 'QA 체계 수립',
+        title: 'Off-grid 전력 모니터링',
         items: [
-          '화면 단위로 기능을 분리(3D 뷰어, IoT 태그, 사용자 관리 등)한 뒤 모듈별 테스트 시나리오와 예외 케이스를 설계',
-          '권한 유형별 동작 분기 검증 — Super Admin / Site Manager / Member',
-          '고객사 기준에 맞춘 표준 테스트 문서 템플릿을 제작하고, 요구사항 기반으로 시나리오를 정렬',
+          'RS-485 MPPT · UART BMS 연동',
+          '태양광 충전·배터리 전압·충방전·잔여 전력 원격 수집',
+          '국내 관제에서 현지 전원 상태 실시간 확인',
         ],
       },
       {
-        title: '고객 커뮤니케이션 대응',
+        title: '에너지 절감형 조명 스케줄',
         items: [
-          '고객사 이슈 요청서 기반 QA 피드백 회신 및 정형화된 QA 리포트 제공',
-          '테스트 완료 보고서, 재현 영상, 비교표 형태로 보고 포맷을 체계화해 신뢰 확보',
-          '이슈 발생 시 Slack·이메일로 신속 응답하고 리포트를 재작성하며 커뮤니케이션 신뢰도를 쌓음',
+          '현지 시간·RTC 기준 새벽 디밍·주요 시간대 100% 점등',
+          'Off-grid 배터리 사용량 관리',
         ],
       },
       {
-        title: '현장 필드 테스트',
+        title: 'Edge AI·환경 센서 확장',
         items: [
-          '삼성 반도체 공장 건설 현장에서 필드 테스트를 직접 수행해 실사용성과 기술적 신뢰성을 검증',
+          '환경 센서, Jetson Nano, 교통·유동량 카메라 연동',
+          '조명 제어를 넘어 스마트시티 환경 데이터 수집',
         ],
+      },
+    ],
+    troubleshooting: [
+      {
+        title: '현지 LTE 망 품질 문제로 중계기 통신 단절',
+        problem: '1차 설치 시 LTE 연결이 약 3분 주기로 반복 단절.',
+        analysis: '통신 모듈·펌웨어만이 아닌 현장 통신사 스캔·비교 — 특정 사업자 품질 문제 확인.',
+        solution: '안정적 통신사 수동 고정 + Watchdog·Auto-Recovery(LTE 모듈 재초기화·재접속) 추가.',
+        result: '즉각 장애 해결 및 장기 운영 재발 방지.',
+      },
+      {
+        title: '본품 배터리 지연 — 저전압 Shutdown 위험',
+        problem: '차량용 12V 임시 배터리로 야간 100% 출력 시 MPPT 저전압 보호 동작 예상.',
+        analysis: '현장 부하 테스트로 저전압 시 MPPT 출력 차단 확인.',
+        solution: '원격 관제 디밍 스케줄 조정으로 배터리 소모 관리.',
+        result: '본품 배터리 도착 전까지 제한 하드웨어 조건에서 운영 유지.',
       },
     ],
     verification: [
-      {
-        area: '3D 뷰어',
-        detail: '뷰 이동, POI(Point of Interest) 생성/삭제, PIN 정보 노출 여부, 미니맵 연동',
-      },
-      {
-        area: 'IoT 태그',
-        detail: '태그 위치 오류, 센서 상태값 미반영, 로그/히스토리 미표시 현상 검증',
-      },
-      {
-        area: '사용자 권한',
-        detail: '기능 접근 제어, 메뉴 숨김 조건, 초대 및 팀 권한 설정 검증',
-      },
-      {
-        area: '외부 공유',
-        detail: 'iframe 공유 시 로딩 실패, 3D 위치 고정 상태 유지 여부',
-      },
+      { area: '실증', detail: '8대 가로등·중계기 · 치르치크시 운영 교육' },
+      { area: '사전 검증', detail: 'Fault Injection Test로 장애 시나리오 검증' },
     ],
-    tooling: [
-      'Selenium — UI 요소 확인, 태그 조작 등 반복 브라우저 검증 스크립트',
-      'Python Requests — IoT 상태 API 응답 정합성 검증',
-      'Slack Webhook — 이상 현상 발생 시 QA 팀 실시간 알림',
-    ],
+    tooling: ['Zephyr OS', 'RS-485 MPPT', 'UART BMS', 'LoRaWAN', 'LTE', 'Watchdog', 'RTC'],
     contribution: [
-      '테스트 시나리오와 품질 기준을 전면 설계하고, 고객 대응용 리포트·QA 커뮤니케이션 체계를 수립했다.',
-      '현장 필드 테스트까지 포함해 “개발 완료된 시스템에 QA를 붙이는 일”을 품질 구조 재설계로 수행했다.',
+      '태양광 시스템 펌웨어 포팅·최적화',
+      'MPPT/BMS 드라이버 및 LTE Watchdog·Auto-Recovery',
+      '현지 장애 분석·대응·운영 교육',
     ],
     insights: [
-      '개발이 끝난 뒤 붙는 QA는 테스트 추가가 아니라, 전반적인 품질 구조를 다시 세우는 일이다.',
-      '고객사로 나가는 모든 자료가 외부 전달용이라는 점에서, 기술성과 문서화·커뮤니케이션 능력이 동시에 필요했다.',
-      '정형화되지 않은 상태에서 화면 ID·기능 ID·테스트 기준을 직접 정의하고 적용하며, 조직 내 QA 기여와 책임의 무게를 실감했다.',
+      '해외 현장은 통신·전력 변수가 크므로 원인 분석 범위를 네트워크·하드웨어까지 확장해야 한다.',
+      '임시 조건에서도 원격 디밍·스케줄로 운영 연속성을 확보할 수 있다.',
     ],
   },
   {
-    slug: 'mm-anomaly-detection',
+    slug: 'smartcity-env-traffic',
     published: true,
-    title: '이상 거래 탐지 자동화 시스템 구축을 통한 거래 안정성 확보',
-    shortTitle: '마켓 메이커 이상 탐지',
-    client: 'Imbx.io',
-    company: 'Bullmarketlabs',
-    periodHint: 'Bullmarketlabs · 암호화폐 거래소',
+    title: '스마트시티 환경·교통 데이터 수집 시스템',
+    shortTitle: '환경·교통 데이터 수집',
+    client: '스마트시티',
+    company: '(주)트로닉스',
+    periodHint: 'Tronix · e-IoT · 2025.01 — 2025.06 · 6명',
     oneLiner:
-      '마켓 메이커(MM) 지갑 frozen 이슈를 재현·원인 규명·자동화 탐지·구조 개선까지 이끌어, 재현율 12.4%→0%로 만든 프로젝트.',
-    role: 'QA Engineer — 재현 · 원인 분석 · 자동화 탐지 · 구조 개선 주도',
-    thumbnail: '/projects/mm-anomaly-detection.png',
+      '공공조명 e-IoT 플랫폼을 환경·기상·교통 데이터 수집으로 확장. Quectel BG95 LTE Cat.M1, 기상 센서, Jetson Nano, LwM2M 연동.',
+    role: 'BG95 드라이버 · 비즈니스 로직 · Zephyr AsyncFramework · RS-485/UART 연동',
+    thumbnail: '/projects/smartcity-env-traffic.png',
     service: {
-      name: 'Imbx.io',
-      tagline: 'Spot·Futures를 지원하는 암호화폐 거래소 (Bullmarketlabs)',
+      name: '환경·교통 데이터 수집 플랫폼',
+      tagline: '조명 제어 플랫폼 → 환경 모니터링·Edge AI 확장',
       points: [
-        '가상자산을 사고팔 수 있는 중앙화 거래소로, 현물(Spot)과 선물(Futures) 거래를 함께 제공했다.',
-        '주문은 매칭 엔진에서 체결된 뒤 메시지 큐를 거쳐 지갑 서비스로 자산 반영이 이어지는 구조였다.',
-        '유동성 공급자인 마켓 메이커(MM, Market Maker) 계정이 대량·고빈도 주문을 넣으며 시장을 받치는 환경에서, 지갑 상태 불일치는 곧바로 트레이딩 중단과 VOC로 이어졌다.',
+        '기존 LoRaWAN 중심 제품에 LTE Cat.M1을 OOP 상속 구조로 추가.',
+        'RS-485 기상·환경 센서, UART Jetson Nano 데이터를 LwM2M으로 서버 전달.',
+        '조명 중심 플랫폼을 환경 모니터링 영역으로 확장, 신규 IoT 제품 2종 기반 마련.',
       ],
     },
     outcomes: [
-      { label: '이상 현상 재현율', before: '12.4%', after: '0%' },
-      { label: 'QA 수동 모니터링', before: '일 4시간', after: '일 30분 이하' },
-      { label: 'Slack 알림 감지', before: '없음', after: '평균 3초 이내' },
-      { label: 'QA–개발 협업', before: '주 1회 요청 기반', after: '기능 단위 공동 리뷰 체계화' },
+      { label: '통신', before: 'LoRaWAN only', after: 'LTE Cat.M1 추가' },
+      { label: '재사용', before: '—', after: '기존 코드 70% 이상 재사용' },
+      { label: '플랫폼', before: '조명 제어', after: '환경·Edge AI 통합 수집' },
     ],
     overview: [
-      '이 프로젝트는 Imbx 거래소에서, 주문 체결 후 지갑 처리 단계의 불일치—마켓 메이커(MM) 계정 자산이 available로 풀리지 않고 frozen에 남는 현상—를 실시간 탐지하고 구조적으로 해결한 과제다.',
-      '역할은 발생 시점 식별, 재현 환경 구성, 테스트 자동화, 개발 협업을 통한 구조 개선 주도였다.',
-      '대량 주문(100건 이상)에서 간헐 발생했고, 사용자에게는 체결 후 잔고 부족 오류로 보였다. MM 트레이딩 중단과 운영·CS VOC 반복이 뒤따랐다.',
+      '프로젝트 인원 6명. Quectel BG95 통신 드라이버, 전체 비즈니스 로직, Zephyr AsyncFramework 개선, RS-485/UART 외부 디바이스 연동.',
     ],
     problem: [
       {
-        heading: '현상',
+        heading: '플랫폼 확장 요구',
         items: [
-          '특정 시점에 MM 계정의 주문 체결 후, 사용 가능 잔고로 금액이 전환되지 않고 동결(frozen wallet)에 유지됨',
-        ],
-      },
-      {
-        heading: '조건·영향',
-        items: [
-          '대량 주문 시(100건 이상) 간헐 발생',
-          'MM 트레이딩 중단, 체결 오류·신뢰 저하, 운영·CS VOC 반복',
+          'LoRaWAN만으로는 LTE 기반 환경·교통 데이터 수집 요구 충족 불가',
+          '이기종 센서·Edge AI 데이터를 공통 구조로 통합 필요',
+          '강우 센서 누적 데이터 초기화 주기 오류(2초)로 통계 생성 불가',
         ],
       },
     ],
     background: [
-      '거래소는 주문 체결 이후 매칭 엔진 → 메시지 큐 → 지갑 서비스 순으로 이벤트를 처리한다. Consumer가 이벤트 순서를 보장하지 못하면 지갑 처리 누락이 발생할 수 있다.',
-      '테스트 케이스로 잡히지 않는 간헐 현상을 어떻게 검증할지, 운영과 같은 조건을 어떻게 통제할지, 사람 없이도 감지·대응하는 자동화를 만들 수 있을지가 핵심이었다.',
-    ],
-    questions: [
-      '테스트 케이스로 잡히지 않는 간헐적 현상을 어떻게 검증할 수 있을까?',
-      '운영 환경과 동일한 조건으로 테스트 환경을 구성하려면 어떤 요소를 통제해야 할까?',
-      '자동화에서 이상 상황을 감지하고 사람 없이도 대응하는 구조를 만들 수 있을까?',
+      '공통 부모 클래스 유지 + BG95 자식 클래스로 Cat.M1 기능만 추가하는 OOP 상속 구조.',
+      'Zephyr AsyncFramework 유지, 프로젝트별 비즈니스·통신 클래스만 교체.',
     ],
     work: [
       {
-        title: 'Step 1. 재현 조건 확정',
+        title: 'LTE Cat.M1 통신 모듈 추가',
         items: [
-          '실제 MM 계정 권한을 가진 테스트 계정 구성',
-          '대량 주문을 빠르게 반복하는 시뮬레이션 스크립트 설계 (Limit Long/Short 반복 + 짧은 간격)',
+          'Quectel BG95 AT Command·PPP 기반 모뎀 제어',
+          '연결 관리·데이터 전송·상태 관리 로직 재사용',
+          'OOP 상속으로 LoRaWAN 코드와 공통 인터페이스 공유',
         ],
       },
       {
-        title: 'Step 2. 데이터 수집',
+        title: '환경 센서·Jetson Nano 연동',
         items: [
-          'Kafka 메시지 로그 수집 — 체결 이벤트 발생 시점과 지갑 처리 시점 비교',
-          'Web 로그 및 UI 잔고 비교 자동화 스크립트 구성',
+          'RS-485 기상·환경 센서, UART Jetson Nano',
+          '공통 데이터 구조 변환 후 LwM2M 서버 전달',
         ],
       },
       {
-        title: 'Step 3. 자동화 기반 이상 탐지',
+        title: '아키텍처 재사용성 검증',
         items: [
-          '시장가 조회 → 자동 주문 → 체결 이후 잔고 변화 추적',
-          '잔고가 변하지 않거나 감소하면 Slack으로 실시간 경고 전송',
+          '코어 아키텍처 변경 없이 신규 제품 적용',
+          '공통 펌웨어 구조의 확장성 실증',
         ],
       },
+    ],
+    troubleshooting: [
       {
-        title: '구조 개선 및 검증',
-        items: [
-          '원인: 메시지 큐 이벤트 순서 꼬임(Race Condition), ACK 이전 미완료 메시지 미처리, 지갑 서비스 재시도 로직 부재',
-          '개선: Kafka Consumer ACK 확인 로직, Dead-letter Queue, 지갑 API 실패 시 최대 3회 재시도',
-          '검증: 기존 대비 1,000건 이상 반복 실행 → 재현 불가, 로그 누락율 0%, 이벤트 순서 정상화',
-        ],
+        title: '강우량 데이터 초기화 주기 오류',
+        problem: '강우 센서 누적 데이터가 약 2초마다 초기화되어 시간 단위 강우 통계 생성 불가.',
+        solution:
+          '누적 초기화 60분, 서버 보고 10분(1시간 6개 누적 데이터). 서버와 협의해 현재·이전 누적값 차이 계산.',
+        result: '10분 단위 강우량·시간당 누적 강우량 모두 관제에서 확인 가능.',
       },
     ],
     verification: [
-      { area: '재현 시나리오', detail: '대량 Limit 주문 반복으로 frozen 간헐 재현 조건 고정' },
-      { area: '메시지 흐름', detail: 'Kafka 체결 이벤트 vs 지갑 처리 시점 대조로 순서 꼬임 확인' },
-      { area: '잔고 감시', detail: 'UI 잔고 before/after 비교 후 Slack 알림' },
-      { area: '회귀 검증', detail: '개선 후 1,000건+ 반복 · 재현율 0% · 로그 누락율 0%' },
+      { area: '제품', detail: '신규 IoT 제품 2종 개발 기반' },
+      { area: '데이터', detail: '환경·Edge AI 통합 수집 구조' },
     ],
-    tooling: [
-      'Selenium + Python — 주문·잔고 UI 추적 및 비교',
-      'Kafka 로그 수집 — 이벤트 순서·처리 시점 분석',
-      'Slack Webhook — 잔고 미갱신 실시간 알림',
-    ],
+    tooling: ['Zephyr OS', 'Quectel BG95', 'LwM2M', 'RS-485', 'UART', 'Jetson Nano'],
     contribution: [
-      '단순 오류 확인이 아니라 시스템 구조상 병목과 메시지 흐름을 QA 관점에서 주도적으로 분석했다.',
-      '수동 확인을 넘어 자동화 시나리오와 이상 탐지 체계를 도입해 테스트 품질과 운영 대응 속도를 개선했다.',
-      '문제 발생 → 구조 이해 → 개선 설계 → 자동화 구현 → 알림 전파까지 End-to-End를 QA 중심으로 리드했다.',
+      'BG95 LTE Cat.M1 드라이버 및 비즈니스 로직',
+      'AsyncFramework 개선 및 센서 통합 파이프라인',
     ],
     insights: [
-      '단순 테스트 수행자에서 벗어나 구조적 품질을 검증·개선하는 QA로 성장하는 계기가 됐다.',
-      '정해진 스펙 없이 현상을 분석하고 시스템을 탐색해 실질적인 구조 개선으로 연결했다.',
-      '재현이 어려운 문제일수록 QA의 전략적 접근이 더 중요하다.',
+      '통신 모듈 추상화는 신규 망 추가 시 전면 재작성 없이 확장 가능하게 한다.',
+      '센서 데이터 파이프라인은 초기화·보고 주기를 서버 통계 요구와 함께 설계해야 한다.',
     ],
   },
   {
-    slug: 'keeneat-qa',
+    slug: 'seosan-public-lighting',
     published: true,
-    title: 'Keeneat QA 체계 구축 및 정부과제 품질 인증 대응',
-    shortTitle: 'Keeneat QA',
-    client: '영상 제작사 · 크리에이터 · 일반 사용자',
-    company: 'Chilloen',
-    periodHint: 'Chilloen · AI 음악 SaaS · 2022.11—2023.11',
+    title: '[서산시] 공공조명 IoT 시스템 안정화 및 LwM2M 전환',
+    shortTitle: '서산 공공조명 IoT',
+    client: '서산시',
+    company: '(주)트로닉스',
+    periodHint: 'Tronix · LoRaWAN · 2023.12 — 2025.12 · 1차 8명 / 2차 5명',
     oneLiner:
-      'QA가 전무한 AI 음악 SaaS에서 프로세스·자동화·ISO 문서를 세우고, NIPA 우수 등급과 후속 자금 유치까지 이끈 프로젝트.',
-    role: '단독 QA Engineer · Scrum Master · 정부과제 품질 총괄',
-    thumbnail: '/projects/keeneat-qa.png',
+      '운영 중 통신 두절·Hang·Hard Fault 해결을 위해 Mbed→Zephyr 포팅, 커스텀 프로토콜→LwM2M/CoAP/TLV 전환. Join 20분→3분, 중계기 20→68대, Payload 70% 절감.',
+    role: '1차: Mbed·LoRaWAN·Delta FOTA · 2차: Zephyr·LwM2M·장애 분석·Clock 대응',
+    thumbnail: '/projects/seosan-public-lighting.png',
     service: {
-      name: 'Keeneat (키닛)',
-      tagline: '장르·길이·빠르기만 고르면 만드는 AI 음악 생성 SaaS (칠로엔)',
+      name: '서산시 공공조명 IoT',
+      tagline: 'LoRaWAN 공공조명 · LwM2M 표준 전환 · 운영 안정화',
       points: [
-        '국내 스타트업 칠로엔이 출시한 음악 작곡·생성 AI 서비스다. 복잡한 작곡 지식 없이 선택지만으로 음원을 빠르게 만들 수 있다.',
-        '생성·구매한 음원의 소유권이 사용자에게 넘어가 상업적 이용이 가능하고, 웹과 PC앱에서 작곡·뮤직마켓을 운영한다.',
-        '사내 엔진 KEENLAB을 기반으로 하며, 영상 제작사·크리에이터·일반 사용자처럼 “쓸 음악이 빨리 필요한” 고객을 겨냥한다.',
-        '당시 제품은 MVP~초기 성장 단계였고, NIPA 정부지원과제와 ISO 9001 수준 품질 문서 제출이 함께 요구되는 환경이었다.',
+        '4회로 조명 제어 디바이스의 원격 관제·FOTA·장애 복구.',
+        '1차 Mbed OS + 커스텀 통신 + VCDIFF Delta FOTA.',
+        '2차 Zephyr OS + LwM2M 표준 + Watchdog Auto-Recovery로 운영 안정성 개선.',
       ],
     },
     outcomes: [
-      { label: 'QA 프로세스', before: '없음', after: 'Jira + 템플릿 워크플로우' },
-      { label: '테스트 자동화율', before: '0%', after: 'UI/API 60% 이상' },
-      { label: '배포 주기', before: '5~6주', after: '2주 내외' },
-      { label: '문서화', before: '사후 정리 없음', after: 'ISO 수준 산출물 사전 관리' },
-      { label: '정부과제 평가', before: '기준 미흡', after: 'NIPA 우수 등급 · 후속 자금' },
+      { label: 'Join 시간', before: '최대 20분', after: '3분 이내' },
+      { label: '중계기 수용', before: '20대', after: '68대' },
+      { label: '장애 대응', before: '현장 방문·수동 재부팅', after: '복구 시간 75% 단축' },
+      { label: 'Payload', before: '커스텀 패킷', after: 'TLV로 약 70% 절감' },
+      { label: '바이너리', before: '580KB', after: '411KB (HSI Clock 전환)' },
     ],
     overview: [
-      '참여기간 2022.11—2023.11. Keeneat의 단독 QA이자 스크럼마스터, 정부과제 품질 총괄을 맡았다.',
-      '핵심 목표는 QA 체계 수립, 테스트 자동화, 정부과제 성과 관리, ISO 9001 기반 품질 시스템 설계·문서화 대응이었다.',
-      '합류 당시 QA 조직·프로세스·문서·테스트 환경이 비어 있어, 단순 테스트를 넘어 전사 품질 시스템을 처음부터 세워야 했다.',
+      '1차: Mbed OS 펌웨어·커스텀 프로토콜·LoRaWAN·VCDIFF Delta FOTA.',
+      '2차: Zephyr 포팅·LwM2M·CoAP+TLV·운영 장애 원인 분석·개선.',
     ],
     problem: [
       {
-        heading: '합류 시점',
+        heading: '운영 환경 장애',
         items: [
-          '빠른 출시가 중요한 초기 스타트업이었지만 QA 체계는 부재',
-          '제품은 MVP 수준, QA 조직·프로세스·문서·테스트 환경이 모두 비어 있음',
-          'NIPA 정부지원과제 수행으로 ISO 9001 기반 품질 문서·산출물·일정·기술보고 제출이 필수',
+          'Task Stack Overflow → Hard Fault',
+          'LoRa 모뎀 커스텀 펌웨어 응답 불가 → 통신 정지',
+          'Zephyr 포팅 시 외부 HSE/RTC Clock 결함으로 부팅 중단',
+          'LoRaWAN 반이중 특성 미고려 시 충돌·데이터 유실',
         ],
       },
     ],
     background: [
-      '단순 테스트를 넘어 조직 수준의 품질 시스템을 도입하고, 외부 평가 기준을 충족하는 전사적 QA 체계를 구축해야 했다.',
-      '내부 프로세스 개선과 외부 인증·과제 대응을 동시에 수행해야 하는 이중 과제이기도 했다.',
+      '커스텀 시스템의 유지보수 한계로 OS·통신 구조 전면 재설계.',
+      'Bootstrap, Observe, FOTA 등 LwM2M 표준 디바이스 관리 기능 도입.',
     ],
     work: [
       {
-        title: 'QA 체계 및 자동화 설계',
+        title: '1차 — Delta FOTA',
         items: [
-          '전체 QA 프로세스 설계 — Jira 기반 테스트 워크플로우(기획 → QA → 완료)',
-          'QA 컨벤션 수립: 명명 규칙, 시트 구성, 재현 포맷 통일',
-          'Postman → Python Requests 전환으로 API 테스트 자동화 (버전 관리·반복 실행 효율)',
-          'Selenium 기반 UI 시나리오 자동화 (로그인~음악생성)',
-          '엣지 시나리오 확장: 대용량 음원, 노이즈 섞인 프롬프트, 비정상 리믹스 요청 등',
+          'Mbed OS 4회로 조명 제어 펌웨어',
+          'LoRaWAN Payload 분할 전송 + Open-VCDIFF Delta FOTA',
         ],
       },
       {
-        title: '정부과제 QA 문서 및 산출물',
+        title: '2차 — Zephyr·LwM2M 전환',
         items: [
-          'ISO 9001 기반 품질관리 문서 수립 — 테스트 계획서, 실행보고서, 오류 리포트, 요구사항 추적 매트릭스',
-          '리뷰 로그, QA 승인 이력, 변경이력 산출물 정리',
-          '기능 검증표, 결과 보고서, 테스트 커버리지 리포트 직접 작성',
-          '제출용 시스템 품질 보고서 작성 및 대응 피드백 관리',
+          'Mbed→Zephyr, 커스텀→LwM2M/CoAP/TLV',
+          'Observe 기반 서버 주도 데이터 보고',
+          '실패 패킷 반복 대신 상태 확인 독립 패킷 복구 시퀀스',
         ],
       },
       {
-        title: '스크럼마스터 · 리소스 매니징',
+        title: 'LoRaWAN 통신 흐름 제어',
         items: [
-          '주간 스프린트 운영 — QA 이슈 우선순위 정의, 스토리 포인트 산정 참여',
-          '신규 인턴/개발자 테스트 지원 가이드 제공',
-          '산출물 자동화 툴 스크립트 공유로 테스트 효율화 유도',
+          '디바이스 주도 주기 보고 → LwM2M Observe 기반 재구성',
+          '충돌·유실 방지 예외 처리',
+        ],
+      },
+    ],
+    troubleshooting: [
+      {
+        title: 'Task Stack Overflow → Hard Fault',
+        problem: '특정 조건에서 Stack Overflow로 MCU Hard Fault.',
+        solution: 'Task Stack·Heap 재분석, Stack 재설정, Watchdog Auto-Recovery.',
+        result: '장애 대응 시간 최대 75% 단축.',
+      },
+      {
+        title: 'LoRa 모뎀 커스텀 펌웨어 통신 정지',
+        problem: '커스텀 모뎀 펌웨어가 특정 상황에서 응답 불가.',
+        solution: '제조사 순정 펌웨어 + UART AT Command, LwM2M 표준화.',
+        result: '커스텀 유지보수 영역 축소, 통신 안정성 개선.',
+      },
+      {
+        title: '기존 PCB 외부 Clock 결함',
+        problem: 'Zephyr 커널 초기화에서 부팅 중단 — 외부 HSE/RTC 미동작.',
+        solution:
+          'Device Tree·Clock를 HSI 내부 Clock으로 변경, Buffer·Stack·메모리 최적화. 보드 교체 없이 신규 펌웨어 운영.',
+        result: '바이너리 580KB→411KB, 하드웨어 교체 비용 없이 생명주기 연장.',
+      },
+    ],
+    verification: [
+      { area: '납품', detail: '서산시 공공 IoT 프로젝트 납품' },
+      { area: '모뎀', detail: '순정 펌웨어 + UART AT 전환' },
+    ],
+    tooling: ['Mbed OS', 'Zephyr OS', 'LoRaWAN', 'LwM2M', 'CoAP', 'TLV', 'Open-VCDIFF', 'Watchdog'],
+    contribution: [
+      '1차·2차 펌웨어 설계·포팅·리팩토링',
+      'LoRaWAN Join 최적화·LwM2M 통신 구조',
+      'Clock 결함 대응 및 메모리 최적화',
+    ],
+    insights: [
+      'OS 포팅은 숨겨진 하드웨어 결함을 드러낼 수 있다 — Clock Tree 분석이 중요하다.',
+      '커스텀 통신·모뎀 펌웨어는 단기 이득보다 장기 유지보수 비용이 크다.',
+    ],
+  },
+  {
+    slug: 'smartcity-iot-platform',
+    published: true,
+    title: '스마트시티 범용 IoT 플랫폼 초기 코어 펌웨어 개발',
+    shortTitle: '범용 IoT 플랫폼 코어',
+    client: '스마트시티',
+    company: '(주)트로닉스',
+    periodHint: 'Tronix · Mbed OS · 2023.01 — 2023.12 · 5명',
+    oneLiner:
+      '조명 제어 중심 제품을 환경 센서·Edge AI·태양광 BMS/MPPT·LoRaWAN을 연결하는 범용 스마트시티 IoT 플랫폼 초기 코어. 이후 다수 공공 IoT 프로젝트의 기반 펌웨어.',
+    role: 'Mbed OS 시스템·비즈니스 로직 · UART/SPI/QSPI · 센서 통합 · LoRaWAN 프로토타입',
+    thumbnail: '/projects/smartcity-iot-platform.png',
+    service: {
+      name: '범용 스마트시티 IoT 플랫폼',
+      tagline: '다중 디바이스·통신을 하나의 MCU에서 제어',
+      points: [
+        '환경 센서, Jetson Nano, BMS, MPPT, LoRaWAN 모듈 등 확장형 연결 구조.',
+        '비즈니스 로직과 장치 제어 분리 — 신규 하드웨어 추가 시 코어 변경 최소화.',
+        '광주광역시 태양광 가로등 실증 등 이후 지자체 프로젝트 공통 기반.',
+      ],
+    },
+    outcomes: [
+      { label: '구조', before: '조명 제어 단일', after: '다중 센서·통신 연동' },
+      { label: '재사용', before: '—', after: '지자체 프로젝트 공통 인터페이스' },
+      { label: '실증', before: '—', after: '광주 태양광 가로등 적용' },
+    ],
+    overview: [
+      '프로젝트 인원 5명. Mbed OS 기반 시스템·비즈니스 로직, UART/SPI/QSPI 디바이스 연동, MPPT/BMS 인터페이스, RAK3172 LoRaWAN 프로토타입.',
+    ],
+    problem: [
+      {
+        heading: '단일 제품 → 플랫폼 전환',
+        items: [
+          '조명 릴레이 제어만으로는 스마트시티 확장 요구 충족 불가',
+          '서로 다른 인터페이스(UART/SPI/QSPI) 디바이스 통합 필요',
+          '향후 제품군 확장을 고려한 아키텍처 설계 필요',
+        ],
+      },
+    ],
+    background: [
+      '관제 플랫폼 요구 분석 후 확장형 펌웨어 구조 설계.',
+      '이후 여러 공공 IoT 프로젝트에서 재사용된 코어 아키텍처의 시작점.',
+    ],
+    work: [
+      {
+        title: '확장형 Firmware Architecture',
+        items: [
+          '비즈니스 로직·장치 제어 계층 분리',
+          '환경 센서·Jetson·BMS·MPPT·LoRaWAN 지원 대상 정의',
+        ],
+      },
+      {
+        title: '다중 Hardware Interface',
+        items: [
+          'UART, SPI, QSPI로 이기종 센서·통신 모듈 제어',
+          'Mbed Peripheral API 활용으로 저수준 구현 시간 단축',
+        ],
+      },
+      {
+        title: 'LoRaWAN 원격 제어 프로토타입',
+        items: [
+          'RAK3172 LoRaWAN 프로토타입',
+          '데이터 보고·서버 원격 명령 처리 구조',
         ],
       },
     ],
     verification: [
-      { area: '프로세스', detail: '없음 → Jira+템플릿으로 명확한 워크플로우 수립' },
-      { area: '자동화', detail: 'UI/API 자동화 60% 이상 적용' },
-      { area: '배포', detail: '5~6주 → 2주 내외로 단축' },
-      { area: '문서·평가', detail: 'ISO 수준 사전 관리, NIPA 우수 등급·후속 자금 유치' },
+      { area: '플랫폼', detail: '복합 데이터(환경·배터리·교통) 수집 구조' },
+      { area: '확장', detail: '공공조명→스마트시티 플랫폼 기반 마련' },
     ],
-    tooling: [
-      'Jira — 테스트 워크플로우·스프린트·이슈 우선순위',
-      'Postman → Python Requests — API 자동화·버전 관리',
-      'Selenium — UI E2E (로그인~음악생성)',
-    ],
+    tooling: ['Mbed OS', 'UART', 'SPI', 'QSPI', 'RAK3172 LoRaWAN', 'MPPT', 'BMS'],
     contribution: [
-      '비어 있던 QA 조직 기능을 프로세스·자동화·문서로 한 번에 세웠다.',
-      '정부과제·ISO 산출물을 총괄해 외부 평가 기준을 충족시키고 후속 자금 유치에 기여했다.',
-      '스크럼 운영과 인력 가이드로 제한된 리소스에서도 품질을 유지할 수 있는 흐름을 만들었다.',
+      '초기 코어 아키텍처·센서 통합 구조 설계',
+      'MPPT/BMS 데이터 수집 인터페이스 초기 설계',
+      'LoRaWAN 통신 프로토타입',
     ],
     insights: [
-      'QA가 단순 테스트 실행을 넘어 조직의 품질 기준을 정의하고 실행하는 역할임을 처음부터 끝까지 경험했다.',
-      'ISO 산출물, 외부 평가 대응, 내부 프로세스 개선을 동시에 수행하며 전사적 QA 관점을 갖추는 계기가 됐다.',
-      '제한된 인력과 초기 환경에서도 전략·자동화·문서화·커뮤니케이션을 병행할 수 있다는 자신감을 얻었다.',
+      '초기 코어 설계가 이후 프로젝트 재사용률과 포팅 기간을 좌우한다.',
+      'Peripheral API 활용은 비즈니스 로직에 리소스를 집중하게 한다.',
+    ],
+  },
+  {
+    slug: 'sendori-air-quality',
+    published: true,
+    title: '[센도리] 실내 공기질 모니터링 센서 펌웨어 개발',
+    shortTitle: '센도리 공기질 센서',
+    client: '센도리',
+    company: '(주)트로닉스',
+    periodHint: 'Tronix · ESP32 · 2022.08 — 2023.05 · 4명',
+    oneLiner:
+      'ESP32 + Arduino로 5종 공기질 센서 데이터 수집·Wi-Fi JSON 전송. UART/I2C/SPI 다중 센서, 98%+ 전송 성공률, 온도 오차 3~3.5℃ → 하드웨어·펌웨어 통합 개선.',
+    role: '펌웨어 비즈니스 로직 전담 · ESP32 · 다중 센서 · JSON Wi-Fi 통신 · Driver 리팩토링',
+    thumbnail: '/projects/sendori-air-quality.png',
+    service: {
+      name: '실내 공기질 모니터링',
+      tagline: '5종 센서 통합 · Wi-Fi JSON · 상용화 수준 데이터 신뢰성',
+      points: [
+        '온도·습도·미세먼지·CO₂·TVOC 등 5종 공기질 데이터 통합 수집.',
+        '하나의 ESP32에서 센서 수집과 Wi-Fi 서버 통신 동시 수행.',
+        '센서→PCB→기구→Firmware 전체 분석으로 측정 오차 해결.',
+      ],
+    },
+    outcomes: [
+      { label: '전송', before: '—', after: '98% 이상 성공률' },
+      { label: '온도 오차', before: '3~3.5℃', after: '기준 장비 수준' },
+      { label: '습도', before: '—', after: '기준 대비 ±2%' },
+    ],
+    overview: [
+      '프로젝트 인원 4명. 펌웨어 비즈니스 로직 전담, ESP32 시스템, 5종 센서 연동, JSON 통신, 센서 변경 Driver 리팩토링.',
+    ],
+    problem: [
+      {
+        heading: '데이터 신뢰성',
+        items: [
+          'CB-HCHO-V4 통합 센서 온도가 기준 대비 3~3.5℃ 높게 측정',
+          '케이스 장착·발열 센서·밀폐 구조가 복합적으로 영향',
+          '펌웨어 보정만으로는 상용화 수준 달성 어려움',
+        ],
+      },
+    ],
+    background: [
+      '원가·개발 기간 고려해 Wi-Fi 내장 ESP32 + Arduino Framework 선정.',
+      '별도 통신 MCU 없이 단일 MCU 구조.',
+    ],
+    work: [
+      {
+        title: '다중 센서 Interface',
+        items: [
+          'UART/I2C/SPI 공기질 센서 연동',
+          '센서별 프로토콜·공통 데이터 가공',
+        ],
+      },
+      {
+        title: 'JSON Wi-Fi 통신',
+        items: [
+          'Device ID, Sensor Type, Value, Time JSON 포맷',
+          '주기 전송 98% 이상 성공률',
+        ],
+      },
+      {
+        title: '센서·하드웨어 구조 개선',
+        items: [
+          '35mm 배기팬, 발열 센서 위치 변경, 격벽 추가',
+          'SHT40(온습도) + SGP30(TVOC) 독립 센서로 교체',
+          'I2C Driver·수집 로직 리팩토링',
+        ],
+      },
+    ],
+    troubleshooting: [
+      {
+        title: '온·습도·TVOC 측정값 오차',
+        problem: 'CB-HCHO-V4 온도 3~3.5℃ 오차. 펌웨어 로직 이상 없음.',
+        analysis:
+          '케이스 장착/탈거, 배기팬, 센서 자체 오차 비교 — 통합 센서 오차 + 케이스 내부 발열 복합 원인.',
+        solution:
+          '기구 개선(팬·격벽·위치) + SHT40/SGP30 독립 센서 + I2C Driver 리팩토링.',
+        result: '온도·습도 기준 장비 수준. Sensor→PCB→기구→Firmware 통합 분석 경험.',
+      },
+    ],
+    verification: [
+      { area: '전송', detail: '주기 전송 98% 이상' },
+      { area: '정확도', detail: '온도·습도 상용화 수준' },
+    ],
+    tooling: ['ESP32', 'Arduino Framework', 'UART', 'I2C', 'SPI', 'Wi-Fi', 'JSON'],
+    contribution: [
+      '펌웨어 비즈니스 로직·센서 수집·Wi-Fi 통신 전담',
+      '센서 교체 Driver 리팩토링 및 하드웨어 협업',
+    ],
+    insights: [
+      '측정 오차는 펌웨어만이 아닌 Sensor→PCB→기구→Firmware 전체 시스템 문제일 수 있다.',
+      '단일 MCU(Wi-Fi 내장)는 IoT 원가·개발 기간에 유리하다.',
     ],
   },
 ];
