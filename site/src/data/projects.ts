@@ -352,7 +352,8 @@ export const projects: Project[] = [
     oneLiner:
       '운영 중 통신 두절·Hang·Hard Fault 해결을 위해 Mbed→Zephyr 포팅, 커스텀 프로토콜→LwM2M/CoAP/TLV 전환. Join 20분→3분, 중계기 20→68대, Payload 70% 절감.',
     role: '1차: Mbed·LoRaWAN·Delta FOTA · 2차: Zephyr·LwM2M·장애 분석·Clock 대응',
-    thumbnail: '/projects/seosan-public-lighting.png',
+    thumbnail: '/projects/seosan-public-lighting.webp',
+    breakImage: '/projects/seosan-public-lighting-collage.webp',
     service: {
       name: '서산시 공공조명 IoT',
       tagline: 'LoRaWAN 공공조명 · LwM2M 표준 전환 · 운영 안정화',
