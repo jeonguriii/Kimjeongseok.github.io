@@ -118,7 +118,7 @@ const others = publishedProjects.filter((p) => p.slug !== project.slug);
         </section>
 
         <div class="break" aria-hidden="true">
-          <img src={withBase(project.thumbnail)} alt="" width="1600" height="900" loading="lazy" />
+          <img src={withBase(project.breakImage ?? project.thumbnail)} alt="" width="1600" height="900" loading="lazy" />
         </div>
 
         <section class="block" id="overview" aria-label="프로젝트 개요">
