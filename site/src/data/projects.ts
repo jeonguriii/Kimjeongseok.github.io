@@ -160,7 +160,8 @@ export const projects: Project[] = [
     oneLiner:
       '전력 인프라 부족 지역에 태양광 Off-grid 스마트 가로등 8대·중계기를 구축. MPPT/BMS 원격 모니터링, LoRaWAN·LTE 통신, 현지 망 불안정·배터리 지연 등 운영 제약 대응.',
     role: 'Zephyr 펌웨어 포팅 · MPPT RS-485 · BMS UART · LTE Watchdog/Auto-Recovery · 현지 교육',
-    thumbnail: '/projects/uzbekistan-solar-streetlight.png',
+    thumbnail: '/projects/uzbekistan-solar-streetlight.webp',
+    breakImage: '/projects/uzbekistan-solar-streetlight-collage.webp',
     service: {
       name: '태양광 Off-grid 스마트 가로등',
       tagline: '독립형 태양광 + 원격 모니터링 + 에너지 절감 스케줄',
