@@ -261,7 +261,8 @@ export const projects: Project[] = [
     oneLiner:
       '공공조명 e-IoT 플랫폼을 환경·기상·교통 데이터 수집으로 확장. Quectel BG95 LTE Cat.M1, 기상 센서, Jetson Nano, LwM2M 연동.',
     role: 'BG95 드라이버 · 비즈니스 로직 · Zephyr AsyncFramework · RS-485/UART 연동',
-    thumbnail: '/projects/smartcity-env-traffic.png',
+    thumbnail: '/projects/smartcity-env-traffic.webp',
+    breakImage: '/projects/smartcity-env-traffic-collage.webp',
     service: {
       name: '환경·교통 데이터 수집 플랫폼',
       tagline: '조명 제어 플랫폼 → 환경 모니터링·Edge AI 확장',
