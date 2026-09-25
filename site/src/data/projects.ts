@@ -50,7 +50,7 @@ export const projects: Project[] = [
       '10개 체육시설의 예약 일정에 맞춰 조명을 자동 제어하고, 실제 소비 전력을 측정·정산하는 IoT 시스템. 전력량 측정, 조명 고장 감지, 캘린더 스케줄, Plug & Play 설치 구조를 추가해 공공시설에 납품.',
     role: 'FreeRTOS 펌웨어·비즈니스 로직 · CT Sensor 고장 감지 · RS-485 전력량계 · LwM2M · FOTA · Plug & Play',
     thumbnail: '/projects/yangju-sports-lighting.webp',
-    breakImage: '/projects/yangju-sports-lighting-site.webp',
+    breakImage: '/projects/yangju-sports-lighting-device.webp',
     service: {
       name: '체육시설 스마트 조명·전력 관리',
       tagline: '예약 기반 조명 제어 + 소비전력 계측 + 원격 관제',
