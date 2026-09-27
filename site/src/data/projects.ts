@@ -460,7 +460,8 @@ export const projects: Project[] = [
     oneLiner:
       '조명 제어 중심 제품을 환경 센서·Edge AI·태양광 BMS/MPPT·LoRaWAN을 연결하는 범용 스마트시티 IoT 플랫폼 초기 코어. 이후 다수 공공 IoT 프로젝트의 기반 펌웨어.',
     role: 'Mbed OS 시스템·비즈니스 로직 · UART/SPI/QSPI · 센서 통합 · LoRaWAN 프로토타입',
-    thumbnail: '/projects/smartcity-iot-platform.png',
+    thumbnail: '/projects/smartcity-iot-platform.webp',
+    breakImage: '/projects/smartcity-iot-platform-collage.webp',
     service: {
       name: '범용 스마트시티 IoT 플랫폼',
       tagline: '다중 디바이스·통신을 하나의 MCU에서 제어',
