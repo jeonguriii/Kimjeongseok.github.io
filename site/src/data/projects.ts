@@ -154,7 +154,7 @@ export const projects: Project[] = [
     published: true,
     title: '[우즈베키스탄 치르치크] 태양광 기반 스마트 가로등 글로벌 실증',
     shortTitle: '우즈베키스탄 태양광 가로등',
-    client: '치르치크시',
+    client: '치르치크시 · 조달청·KOICA 해외실증',
     company: '(주)트로닉스',
     periodHint: 'Tronix · Off-grid · 2026.05 — 2026.07 · 6명',
     oneLiner:
@@ -237,6 +237,7 @@ export const projects: Project[] = [
     ],
     verification: [
       { area: '실증', detail: '8대 가로등·중계기 · 치르치크시 운영 교육' },
+      { area: '기증', detail: '치르치크시청 기증식 (2026.07.29)' },
       { area: '사전 검증', detail: 'Fault Injection Test로 장애 시나리오 검증' },
     ],
     tooling: ['Zephyr OS', 'RS-485 MPPT', 'UART BMS', 'LoRaWAN', 'LTE', 'Watchdog', 'RTC'],

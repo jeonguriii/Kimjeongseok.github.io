@@ -253,6 +253,8 @@ const featOut = featured?.outcomes[0];
                 <h2 class="section-label">Education</h2>
                 <p class="aside__lead">{profile.education.school}</p>
                 <p class="aside__sub">{profile.education.detail}</p>
+                <p class="aside__lead aside__lead--next">{profile.education.activity.name}</p>
+                <p class="aside__sub">{profile.education.activity.detail}</p>
               </div>
               <div data-reveal>
                 <h2 class="section-label">Certification</h2>
@@ -994,6 +996,10 @@ const featOut = featured?.outcomes[0];
     font-size: 0.95rem;
     font-weight: 650;
     letter-spacing: -0.02em;
+  }
+
+  .aside__lead--next {
+    margin-top: 0.9rem;
   }
 
   .aside__sub {

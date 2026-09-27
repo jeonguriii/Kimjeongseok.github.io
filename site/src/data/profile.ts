@@ -124,12 +124,15 @@ export const profile = {
   education: {
     school: '조선대학교 컴퓨터공학과',
     detail: '2015.03 — 2021.02',
+    activity: {
+      name: '멋쟁이사자처럼 대학 7기',
+      detail: 'Django 웹 프로젝트 · 2019',
+    },
   },
   certifications: [
     '정보처리기사',
     'SW개발_L3',
     '네트워크관리사 2급',
     '컴퓨터활용능력 2급',
-    '멋쟁이사자처럼 대학 7기',
   ],
 } as const;
