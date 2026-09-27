@@ -542,7 +542,8 @@ export const projects: Project[] = [
     oneLiner:
       'ESP32 + Arduino로 5종 공기질 센서 데이터 수집·Wi-Fi JSON 전송. UART/I2C/SPI 다중 센서, 98%+ 전송 성공률, 온도 오차 3~3.5℃ → 하드웨어·펌웨어 통합 개선.',
     role: '펌웨어 비즈니스 로직 전담 · ESP32 · 다중 센서 · JSON Wi-Fi 통신 · Driver 리팩토링',
-    thumbnail: '/projects/sendori-air-quality.png',
+    thumbnail: '/projects/sendori-air-quality.webp',
+    breakImage: '/projects/sendori-air-quality-collage.webp',
     service: {
       name: '실내 공기질 모니터링',
       tagline: '5종 센서 통합 · Wi-Fi JSON · 상용화 수준 데이터 신뢰성',

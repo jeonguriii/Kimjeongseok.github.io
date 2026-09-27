@@ -405,7 +405,6 @@
 
   .case .break {
     margin-inline: calc(-1 * var(--rail));
-    aspect-ratio: 16 / 9;
   }
 
   .case .more__list {
