@@ -970,6 +970,14 @@ const featOut = featured?.outcomes[0];
     font-size: 0.9rem;
     line-height: 1.5;
     color: var(--mute);
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 520px) {
+    .skills__row {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
   }
 
   .stack__meta {
@@ -1202,7 +1210,7 @@ const featOut = featured?.outcomes[0];
 
     .hero__frame {
       grid-template-columns: 1fr;
-      padding: 1.5rem var(--rail) 0;
+      padding: calc(var(--nav-h) + 2.5rem) var(--rail) 0;
       gap: 1.5rem;
     }
 
@@ -1250,6 +1258,14 @@ const featOut = featured?.outcomes[0];
 
     .cross__item--offset {
       width: 100%;
+    }
+
+    .cross__media {
+      min-height: 0;
+    }
+
+    .stack__meta {
+      gap: 1.25rem;
     }
 
     .nav__links {
