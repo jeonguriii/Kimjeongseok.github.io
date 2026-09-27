@@ -5,7 +5,7 @@ export const profile = {
   headline: '재사용 가능한 구조와 안정적인 시스템을 설계하는 임베디드 개발자',
   tagline:
     'STM32·ESP32 기반 IoT — 스마트 공공조명, 환경 센서, 원격 제어, 독립형 태양광 시스템',
-  years: '경력 3년+',
+  years: '경력 4년+',
   summary:
     'STM32와 ESP32 기반 IoT 임베디드 시스템을 개발하며 스마트 공공조명, 환경 센서, 원격 제어, 독립형 태양광 시스템 등 실제 현장에서 운영되는 제품을 구축해 왔습니다. OOP 기반 펌웨어 아키텍처와 RTOS 독립적 모듈 구조로 프로젝트 간 코드 70% 이상 재사용, LoRaWAN·LTE Cat.M1·LwM2M·FOTA 등 원격 IoT 통신과 Watchdog·Auto-Recovery로 현장 운영 안정성을 개선합니다.',
   contact: {
