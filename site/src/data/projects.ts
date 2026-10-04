@@ -351,7 +351,7 @@ export const projects: Project[] = [
     company: '(주)트로닉스',
     periodHint: 'Tronix · LoRaWAN · 2023.12 — 2025.12 · 1차 8명 / 2차 5명',
     oneLiner:
-      '운영 중 통신 두절·Hang·Hard Fault 해결을 위해 Mbed→Zephyr 포팅, 커스텀 프로토콜→LwM2M/CoAP/TLV 전환. Join 20분→3분, 중계기 20→68대, Payload 70% 절감.',
+      '운영 중 반복되던 통신 두절과 Hard Fault를 해결하기 위해 Mbed→Zephyr 포팅, 커스텀 펌웨어·프로토콜을 순정 펌웨어와 LwM2M 표준으로 전환. Join 20분 → 3분, 중계기당 동시 통신 단말 20대 → 68대 이상, Payload 70% 절감.',
     role: '1차: Mbed·LoRaWAN·Delta FOTA · 2차: Zephyr·LwM2M·장애 분석·Clock 대응',
     thumbnail: '/projects/seosan-public-lighting.webp',
     breakImage: '/projects/seosan-public-lighting-collage.webp',
@@ -366,7 +366,7 @@ export const projects: Project[] = [
     },
     outcomes: [
       { label: 'Join 시간', before: '최대 20분', after: '3분 이내' },
-      { label: '중계기 수용', before: '20대', after: '68대' },
+      { label: '중계기 1대당 단말', before: '최대 20대', after: '68대 이상 (보유 장비 68대 전수 확인)' },
       { label: '장애 대응', before: '현장 방문·수동 재부팅', after: '복구 시간 최대 75% 단축' },
       { label: 'Payload', before: '커스텀 패킷', after: 'TLV로 약 70% 절감' },
       { label: '바이너리', before: '580KB', after: '411KB (메모리·Buffer 최적화)' },
@@ -380,6 +380,7 @@ export const projects: Project[] = [
         heading: '운영 환경 장애',
         items: [
           'Task Stack Overflow → Hard Fault',
+          '커스텀 펌웨어 구조에서 중계기당 단말 20대 초과 시 Join 처리 스레드 다운 → 전체 통신 두절',
           'LoRa 모뎀 커스텀 펌웨어 응답 불가 → 통신 정지',
           'Zephyr 포팅 시 외부 HSE/LSE(RTC) Clock 결함으로 부팅 중단',
           'LoRaWAN 반이중 특성 미고려 시 충돌·데이터 유실',
@@ -415,16 +416,19 @@ export const projects: Project[] = [
     ],
     troubleshooting: [
       {
+        title: '커스텀 LoRaWAN 펌웨어의 한계: 중계기당 20대 초과 시 전체 통신 중단',
+        problem:
+          '1차에는 중계기(RAK7248C)와 단말 모뎀(RAK3172) 모두 커스텀 펌웨어·자체 프로토콜을 사용. 중계기당 20대를 넘으면 Join 처리 스레드가 다운되며 기존 단말까지 모두 통신이 끊겼고, 단말 모뎀도 특정 상황에서 응답 불가.',
+        solution:
+          '커스텀 펌웨어를 걷어내고 RAK 순정 펌웨어 + ChirpStack 구조로 전환. 단말 측(담당): RAK3172를 순정 펌웨어로 교체하고, MCU에서 UART AT Command로 모뎀을 제어하도록 통신 로직 재작성. Join 시퀀스와 브로드캐스트 수신 처리 규칙은 중계기 담당자와 함께 정의.',
+        result:
+          '보유 장비 68대가 중계기 1대에 동시 접속해 브로드캐스트 통신까지 확인(장비 수의 한계로 68대까지 검증). 커스텀 펌웨어 유지보수 부담 감소.',
+      },
+      {
         title: 'Task Stack Overflow → Hard Fault',
         problem: '특정 조건에서 Stack Overflow로 MCU Hard Fault.',
         solution: 'Task Stack·Heap 재분석, Stack 재설정, Watchdog Auto-Recovery.',
         result: '장애 대응 시간 최대 75% 단축.',
-      },
-      {
-        title: 'LoRa 모뎀 커스텀 펌웨어 통신 정지',
-        problem: '커스텀 모뎀 펌웨어가 특정 상황에서 응답 불가.',
-        solution: '제조사 순정 펌웨어 + UART AT Command, LwM2M 표준화.',
-        result: '커스텀 유지보수 영역 축소, 통신 안정성 개선.',
       },
       {
         title: '기존 PCB 외부 Clock 결함',
@@ -438,7 +442,7 @@ export const projects: Project[] = [
       { area: '납품', detail: '서산시 공공 IoT 프로젝트 납품' },
       { area: '모뎀', detail: '순정 펌웨어 + UART AT 전환' },
     ],
-    tooling: ['Mbed OS', 'Zephyr OS', 'LoRaWAN', 'LwM2M', 'CoAP', 'TLV', 'Open-VCDIFF', 'Watchdog'],
+    tooling: ['Mbed OS', 'Zephyr OS', 'LoRaWAN', 'ChirpStack', 'LwM2M', 'CoAP', 'TLV', 'Open-VCDIFF', 'Watchdog'],
     contribution: [
       '1차·2차 펌웨어 설계·포팅·리팩토링',
       'LoRaWAN Join 최적화·LwM2M 통신 구조',
