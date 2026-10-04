@@ -104,10 +104,14 @@ const others = publishedProjects.filter((p) => p.slug !== project.slug);
                   <li>
                     <p class="outcomes__label">{item.label}</p>
                     <p class="outcomes__change">
-                      <span>{item.before}</span>
-                      <span class="outcomes__arrow" aria-hidden="true">
-                        →
-                      </span>
+                      {item.before.trim() !== '' && item.before !== '—' && (
+                        <>
+                          <span>{item.before}</span>
+                          <span class="outcomes__arrow" aria-hidden="true">
+                            →
+                          </span>
+                        </>
+                      )}
                       <strong>{item.after}</strong>
                     </p>
                   </li>

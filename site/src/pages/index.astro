@@ -7,6 +7,7 @@ import { withBase } from '../utils/url';
 
 const [featured, ...rest] = publishedProjects;
 const featOut = featured?.outcomes[0];
+const hasBefore = (o?: { before: string }) => !!o && o.before.trim() !== '' && o.before !== '—';
 ---
 
 <BaseLayout>
@@ -111,7 +112,7 @@ const featOut = featured?.outcomes[0];
                       {featOut ? (
                         <p class="feature__out">
                           <span>{featOut.label}</span>
-                          {featOut.before} → {featOut.after}
+                          {hasBefore(featOut) ? `${featOut.before} → ${featOut.after}` : featOut.after}
                         </p>
                       ) : null}
                       <span class="feature__go">프로젝트 보기</span>
@@ -160,7 +161,7 @@ const featOut = featured?.outcomes[0];
                       <p class="cross__line">{project.oneLiner}</p>
                       {out ? (
                         <p class="cross__out">
-                          {out.before} → {out.after}
+                          {hasBefore(out) ? `${out.before} → ${out.after}` : out.after}
                         </p>
                       ) : null}
                       <span class="cross__go">자세히</span>

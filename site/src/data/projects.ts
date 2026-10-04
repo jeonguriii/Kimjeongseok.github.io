@@ -61,11 +61,11 @@ export const projects: Project[] = [
       ],
     },
     outcomes: [
-      { label: '납품', before: '개발 중', after: '양주도시공사 검수 완료 · 10개 시설 적용' },
+      { label: '납품', before: '—', after: '양주도시공사 검수 완료 · 체육시설 10곳 적용' },
       { label: '고장 감지', before: '고정 임계값', after: '30일 주기 자가 학습형 판단 로직' },
       { label: '포팅', before: '—', after: '신규 펌웨어 4일 내 완료' },
       { label: '코드 재사용', before: '—', after: '기존 아키텍처 70% 이상 재사용' },
-      { label: '현장 출장', before: '개발자 매번 방문', after: 'Plug & Play로 출장 리소스 80% 절감' },
+      { label: '설치 및 유지보수', before: '개발자 매번 방문', after: 'Plug & Play·FOTA로 출장 리소스 80% 절감' },
     ],
     overview: [
       '프로젝트 인원 5명. FreeRTOS 기반 펌웨어 및 비즈니스 로직 개발 담당.',
