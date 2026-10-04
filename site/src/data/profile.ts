@@ -20,7 +20,7 @@ export const profile = {
       companyEn: 'Tronix',
       role: 'Embedded Firmware Engineer',
       focus: 'STM32·ESP32 IoT 펌웨어 · OOP 아키텍처 · LoRaWAN/LTE/LwM2M · FOTA',
-      products: '스마트 공공조명 · 환경 센서 · 태양광 Off-grid · e-IoT 플랫폼',
+      products: '스마트 공공조명 · 환경 센서 · 독립형 태양광 · e-IoT 플랫폼',
       bullets: [
         'STM32 기반 스마트 공공조명 및 IoT 제품군 펌웨어 설계·개발',
         'Mbed OS, Zephyr OS, FreeRTOS 기반 시스템 설계 및 제품 포팅',

@@ -115,7 +115,7 @@ export const projects: Project[] = [
       {
         title: 'Plug & Play 설치 구조',
         items: [
-          'Peripheral Self Check → LTE 연결 → LwM2M Bootstrap → Server Registration → Observe 설정 → 운영 시작',
+          'Power-On Self-Test → LTE 연결 → LwM2M Bootstrap → Registration → Observe 설정 → 운영 시작',
           '현장 작업자는 릴레이·전원 결선만으로 설치 완료',
           '개발자는 사무실에서 서버 접속 상태와 안테나 신호 감도만 원격 확인',
         ],
@@ -156,14 +156,14 @@ export const projects: Project[] = [
     shortTitle: '우즈베키스탄 태양광 가로등',
     client: '치르치크시 · 조달청·KOICA 해외실증',
     company: '(주)트로닉스',
-    periodHint: 'Tronix · Off-grid · 2026.05 — 2026.07 · 6명',
+    periodHint: 'Tronix · 태양광 · 2026.05 — 2026.07 · 6명',
     oneLiner:
       '전력 인프라가 부족한 지역에 태양광 독립형 스마트 가로등 8대와 중계기를 구축. MPPT/BMS 상태를 LoRaWAN·LTE로 원격 모니터링하고, 현지 통신망 불안정과 배터리 공급 지연에 대응.',
     role: 'Zephyr 펌웨어 포팅 · MPPT RS-485 · BMS UART · LTE Watchdog/Auto-Recovery · 현지 교육',
     thumbnail: '/projects/uzbekistan-solar-streetlight.webp',
     breakImage: '/projects/uzbekistan-solar-streetlight-collage.webp',
     service: {
-      name: '태양광 Off-grid 스마트 가로등',
+      name: '독립형(Off-grid) 태양광 스마트 가로등',
       tagline: '독립형 태양광 + 원격 모니터링 + 에너지 절감 스케줄',
       points: [
         '우즈베키스탄 치르치크 외곽에 전력망 없이 태양광·배터리로 구동하는 스마트 가로등 시스템.',
@@ -183,7 +183,7 @@ export const projects: Project[] = [
     ],
     problem: [
       {
-        heading: '해외 Off-grid 운영 제약',
+        heading: '전력망 없는 해외 현장의 운영 제약',
         items: [
           '현지 이동통신망 품질 불안정으로 LTE 중계기 통신 단절',
           '본품 배터리 공급 1.5개월 지연 — 차량용 12V 임시 배터리로 운영',
@@ -197,7 +197,7 @@ export const projects: Project[] = [
     ],
     work: [
       {
-        title: 'Off-grid 전력 모니터링',
+        title: '태양광·배터리 전력 모니터링',
         items: [
           'RS-485 MPPT · UART BMS 연동',
           '태양광 충전·배터리 전압·충방전·잔여 전력 원격 수집',
@@ -208,7 +208,7 @@ export const projects: Project[] = [
         title: '에너지 절감형 조명 스케줄',
         items: [
           '현지 시간·RTC 기준 새벽 디밍·주요 시간대 100% 점등',
-          'Off-grid 배터리 사용량 관리',
+          '태양광 충전량에 맞춘 배터리 사용량 관리',
         ],
       },
       {
