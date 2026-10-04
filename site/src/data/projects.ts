@@ -56,7 +56,7 @@ export const projects: Project[] = [
       tagline: '예약 기반 조명 제어 + 소비전력 계측 + 원격 관제',
       points: [
         '양주시 10개 체육시설에 예약 일정과 연동한 자동 조명 제어, 실제 소비 전력 측정·정산 기능 제공.',
-        '기존 e-IoT 플랫폼에 전력량 측정, 조명 고장 감지, 캘린더 기반 자동 제어, Plug & Play 설치 구조 추가.',
+        '기존 e-IoT 플랫폼에 전력량 측정, 조명 고장 감지, 캘린더 스케줄 기반 자동 제어, Plug & Play 설치 구조 추가.',
         '시설 관리자가 현장 방문 없이 모바일·PC로 조명 일정 제어, 전력 사용량·요금 정산 데이터 활용.',
       ],
     },
@@ -76,7 +76,7 @@ export const projects: Project[] = [
       {
         heading: '공공 IoT 설치·운영 병목',
         items: [
-          '대규모 설치 시 개발자가 현장에서 통신·서버 연결을 수동 확인해야 하는 구조',
+          '설치업체가 UART 터미널로 통신·서버 설정을 할 수 없어, 설치마다 개발자가 현장에 동행해야 하는 구조',
           '조명 고장을 고정 임계값으로만 판단하면 현장별 조명 특성·램프 노후화를 반영하기 어려움',
           '순차 점등 시 대용량 부하 증가를 스파이크 노이즈로 오인하는 전력 측정 오류',
         ],
@@ -117,7 +117,7 @@ export const projects: Project[] = [
         items: [
           'Peripheral Self Check → LTE 연결 → LwM2M Bootstrap → Server Registration → Observe 설정 → 운영 시작',
           '현장 작업자는 릴레이·전원 결선만으로 설치 완료',
-          '개발자는 관제 시스템에서 접속 상태만 확인',
+          '개발자는 사무실에서 서버 접속 상태와 안테나 신호 감도만 원격 확인',
         ],
       },
     ],
@@ -135,7 +135,7 @@ export const projects: Project[] = [
     verification: [
       { area: '납품', detail: '양주도시공사 검수 완료 · 10개 체육시설 현장 적용' },
       { area: 'FOTA', detail: '펌웨어 원격 배포로 장애 대응 현장 방문 최소화' },
-      { area: '설치', detail: 'Plug & Play로 개발자 현장 출장 80% 절감' },
+      { area: '설치', detail: 'Plug & Play 구조로 전원만 연결하면 서버 등록까지 자동, 개발자 현장 동행 80% 절감' },
     ],
     tooling: ['FreeRTOS', 'LwM2M', 'LTE Cat.M1', 'RS-485', 'CT Sensor / ADC', 'EEPROM', 'FOTA'],
     contribution: [
