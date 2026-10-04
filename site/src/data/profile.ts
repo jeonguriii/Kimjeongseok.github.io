@@ -26,7 +26,7 @@ export const profile = {
         'Mbed OS·Zephyr OS·FreeRTOS 기반 시스템 설계, 비즈니스 로직 변경 없이 OS 계층만 교체해 Zephyr → FreeRTOS 포팅 6일·안정화 2주',
         'OOP 공통 아키텍처로 프로젝트 간 코드 70% 이상 재사용',
         'LoRaWAN 단말 통신 구조 재설계로 Join 시간 최대 20분 → 3분 이내, 중계기당 동시 통신 단말 20대 → 68대 이상',
-        'LTE Cat.M1(Quectel BG95)·LwM2M 원격 통신을 추가해 LoRaWAN 중심 제품군 확장',
+        'LTE Cat.M1(Quectel BG95)·LwM2M 원격 통신을 추가해 LoRaWAN 중심 제품군 확장, NAT Timeout 대응으로 원격 제어 안정성 개선',
         'Watchdog·Auto-Recovery 구조로 장애 복구 시간 최대 75% 단축',
         'Plug & Play 설치 구조와 LwM2M FOTA로 개발자 현장 출장 80% 절감',
         'UART, SPI, I2C, RS-485 기반 센서·통신 모듈 드라이버 개발',
@@ -77,8 +77,8 @@ export const profile = {
     {
       group: 'Network / IoT',
       items: [
-        'LoRaWAN — Join 최적화·흐름 제어·예외 처리',
-        'LTE Cat.M1 — Quectel BG95, AT Command, PPP',
+        'LoRaWAN — Join 최적화·다운링크 충돌 방지·예외 처리',
+        'LTE Cat.M1 — Quectel BG95, AT Command, PPP, NAT Timeout 대응',
         'LwM2M / CoAP — Bootstrap, Observe, FOTA, TLV',
       ],
     },
@@ -93,7 +93,7 @@ export const profile = {
       group: 'OTA / FOTA',
       items: [
         'LwM2M FOTA · LoRaWAN 분할 전송',
-        'VCDIFF Delta Update · 원격 유지보수 프로세스',
+        'VCDIFF Delta Update · A/B Slot Update',
       ],
     },
     {

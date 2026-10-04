@@ -69,7 +69,7 @@ export const projects: Project[] = [
     ],
     overview: [
       '프로젝트 인원 5명. FreeRTOS 기반 펌웨어 및 비즈니스 로직 개발 담당.',
-      'CT Sensor/ADC 기반 조명 고장 감지, RS-485 전력량계 연동, 캘린더 스케줄링, LwM2M 통신 안정화, FOTA, Plug & Play 초기화 시퀀스 구현.',
+      'CT Sensor/ADC 기반 조명 고장 감지, RS-485 전력량계 연동, 캘린더 스케줄링, LwM2M 통신 안정화(NAT Timeout 대응), A/B Slot FOTA, Plug & Play 초기화 시퀀스 구현.',
       '원격 FOTA로 장애 대응을 위한 현장 방문을 최소화하도록 설계.',
     ],
     problem: [
@@ -110,6 +110,14 @@ export const projects: Project[] = [
           'RS-485 전력량계 연동으로 실제 조명 소비전력 측정',
           'LwM2M Observe로 주기적 서버 전달',
           '시설별 전력 사용량 분석·요금 정산 데이터 구조 설계',
+        ],
+      },
+      {
+        title: 'LTE 원격 제어·FOTA 고도화',
+        items: [
+          '광주 프로젝트의 LTE Cat.M1 통신을 고도화해 NAT Timeout 대응',
+          '원격 제어 안정성·응답 성능 개선',
+          'A/B Slot 기반 FOTA로 원격 펌웨어 업데이트',
         ],
       },
       {
@@ -410,7 +418,7 @@ export const projects: Project[] = [
         title: 'LoRaWAN 통신 흐름 제어',
         items: [
           '디바이스 주도 주기 보고 → LwM2M Observe 기반 재구성',
-          '충돌·유실 방지 예외 처리',
+          '다운링크 충돌 방지 정책 설계 (2차 고도화), 충돌·유실 예외 처리',
         ],
       },
     ],
