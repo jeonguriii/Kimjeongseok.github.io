@@ -47,7 +47,7 @@ export const projects: Project[] = [
     company: '(주)트로닉스',
     periodHint: 'Tronix · e-IoT · 2026.05 — 2026.08 · 5명',
     oneLiner:
-      '10개 체육시설의 예약 일정에 맞춰 조명을 자동 제어하고, 실제 소비 전력을 측정해 정산까지 연결하는 IoT 시스템. 기존 플랫폼에 조명 고장 감지와 Plug & Play 설치 구조를 더해 공공시설에 납품.',
+      '체육시설 10곳의 예약 일정에 맞춰 조명을 자동 제어하고, 실제 소비 전력을 측정해 정산까지 연결하는 IoT 시스템. 기존 플랫폼에 조명 고장 감지와 Plug & Play 설치 구조를 더해 공공시설에 납품.',
     role: 'FreeRTOS 펌웨어·비즈니스 로직 · CT Sensor 고장 감지 · RS-485 전력량계 · LwM2M · FOTA · Plug & Play',
     thumbnail: '/projects/yangju-sports-lighting.webp',
     breakImage: '/projects/yangju-sports-lighting-device.webp',
@@ -55,7 +55,7 @@ export const projects: Project[] = [
       name: '체육시설 스마트 조명·전력 관리',
       tagline: '예약 기반 조명 제어 + 소비전력 계측 + 원격 관제',
       points: [
-        '양주시 10개 체육시설에 예약 일정과 연동한 자동 조명 제어, 실제 소비 전력 측정·정산 기능 제공.',
+        '양주시 체육시설 10곳에 예약 일정과 연동한 자동 조명 제어, 실제 소비 전력 측정·정산 기능 제공.',
         '기존 e-IoT 플랫폼에 전력량 측정, 조명 고장 감지, 캘린더 스케줄 기반 자동 제어, Plug & Play 설치 구조 추가.',
         '시설 관리자가 현장 방문 없이 모바일·PC로 조명 일정 제어, 전력 사용량·요금 정산 데이터 활용.',
       ],
@@ -65,7 +65,7 @@ export const projects: Project[] = [
       { label: '고장 감지', before: '고정 임계값', after: '30일 주기 자가 학습형 판단 로직' },
       { label: '포팅', before: '—', after: 'Zephyr → FreeRTOS 6일, 안정화 2주 (비즈니스 로직 무변경)' },
       { label: '코드 재사용', before: '—', after: '기존 아키텍처 70% 이상 재사용' },
-      { label: '설치 및 유지보수', before: '개발자 매번 방문', after: 'Plug & Play·FOTA로 출장 리소스 80% 절감' },
+      { label: '설치 및 유지보수', before: '개발자 매번 방문', after: 'Plug & Play·FOTA로 개발자 현장 출장 80% 절감' },
     ],
     overview: [
       '프로젝트 인원 5명. FreeRTOS 기반 펌웨어 및 비즈니스 로직 개발 담당.',
@@ -133,9 +133,9 @@ export const projects: Project[] = [
       },
     ],
     verification: [
-      { area: '납품', detail: '양주도시공사 검수 완료 · 10개 체육시설 현장 적용' },
+      { area: '납품', detail: '양주도시공사 검수 완료 · 체육시설 10곳, 디바이스 26대 납품' },
       { area: 'FOTA', detail: '펌웨어 원격 배포로 장애 대응 현장 방문 최소화' },
-      { area: '설치', detail: 'Plug & Play 구조로 전원만 연결하면 서버 등록까지 자동, 개발자 현장 동행 80% 절감' },
+      { area: '설치', detail: 'Plug & Play 구조로 전원만 연결하면 서버 등록까지 자동, 개발자 동행 없이 설치 완료' },
     ],
     tooling: ['FreeRTOS', 'LwM2M', 'LTE Cat.M1', 'RS-485', 'CT Sensor / ADC', 'EEPROM', 'FOTA'],
     contribution: [
@@ -174,7 +174,7 @@ export const projects: Project[] = [
     outcomes: [
       { label: '실증', before: '—', after: '가로등 8대·중계기 구축' },
       { label: '모니터링', before: '—', after: 'MPPT/BMS 원격 모니터링' },
-      { label: '통신', before: '3분 주기 단절', after: 'Watchdog·Auto-Recovery로 장기 안정성' },
+      { label: '통신', before: '3분 주기 단절', after: '통신사 고정 + Auto-Recovery로 단절 해소' },
       { label: '운영', before: '본품 배터리 지연', after: '임시 배터리 + 디밍으로 운영 지속' },
     ],
     overview: [
@@ -254,9 +254,9 @@ export const projects: Project[] = [
   {
     slug: 'smartcity-env-traffic',
     published: true,
-    title: '스마트시티 환경·교통 데이터 수집 시스템',
+    title: '[광주광역시] 스마트시티 환경·교통 데이터 수집 시스템',
     shortTitle: '환경·교통 데이터 수집',
-    client: '스마트시티',
+    client: '광주광역시',
     company: '(주)트로닉스',
     periodHint: 'Tronix · e-IoT · 2025.01 — 2025.06 · 6명',
     oneLiner:
@@ -351,7 +351,7 @@ export const projects: Project[] = [
     company: '(주)트로닉스',
     periodHint: 'Tronix · LoRaWAN · 2023.12 — 2025.12 · 1차 8명 / 2차 5명',
     oneLiner:
-      '운영 중 반복되던 통신 두절과 Hard Fault를 해결하기 위해 Mbed→Zephyr 포팅, 커스텀 펌웨어·프로토콜을 순정 펌웨어와 LwM2M 표준으로 전환. Join 20분 → 3분, 중계기당 동시 통신 단말 20대 → 68대 이상, Payload 70% 절감.',
+      '운영 중 반복되던 통신 두절과 Hard Fault를 해결하기 위해 Mbed→Zephyr 포팅, 커스텀 펌웨어·프로토콜을 순정 펌웨어와 LwM2M 표준으로 전환. Join 최대 20분 → 3분 이내, 중계기당 동시 통신 단말 20대 → 68대 이상, Payload 70% 절감.',
     role: '1차: Mbed·LoRaWAN·Delta FOTA · 2차: Zephyr·LwM2M·장애 분석·Clock 대응',
     thumbnail: '/projects/seosan-public-lighting.webp',
     breakImage: '/projects/seosan-public-lighting-collage.webp',
@@ -428,7 +428,7 @@ export const projects: Project[] = [
         title: 'Task Stack Overflow → Hard Fault',
         problem: '특정 조건에서 Stack Overflow로 MCU Hard Fault.',
         solution: 'Task Stack·Heap 재분석, Stack 재설정, Watchdog Auto-Recovery.',
-        result: '장애 대응 시간 최대 75% 단축.',
+        result: '장애 발생부터 복구까지 시간 최대 75% 단축. 장애가 나도 유지보수 업체가 전원을 다시 넣는 것만으로 정상 복귀.',
       },
       {
         title: '기존 PCB 외부 Clock 결함',
@@ -456,9 +456,9 @@ export const projects: Project[] = [
   {
     slug: 'smartcity-iot-platform',
     published: true,
-    title: '스마트시티 범용 IoT 플랫폼 초기 코어 펌웨어 개발',
+    title: '[광주광역시] 스마트시티 범용 IoT 플랫폼 초기 코어 펌웨어 개발',
     shortTitle: '범용 IoT 플랫폼 코어',
-    client: '스마트시티',
+    client: '광주광역시',
     company: '(주)트로닉스',
     periodHint: 'Tronix · Mbed OS · 2023.01 — 2023.12 · 5명',
     oneLiner:
