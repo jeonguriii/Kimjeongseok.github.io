@@ -1,6 +1,6 @@
 export const experiences = {
   title: 'Experience',
-  oneLiner: '펌웨어 개발 외에도 개발 환경, 시스템 이해, 현장 대응을 위한 습관을 쌓아왔습니다.',
+  oneLiner: '펌웨어 개발 밖에서도 개발 환경을 다듬고, 실제 시스템을 관찰하고, 현장 업무를 버틸 체력을 꾸준히 관리해 왔습니다.',
   items: [
     {
       slug: 'cross-platform',

@@ -7,7 +7,7 @@ export const profile = {
     'STM32·ESP32 기반 IoT — 스마트 공공조명, 환경 센서, 원격 제어, 독립형 태양광 시스템',
   years: '경력 4년+',
   summary:
-    'STM32와 ESP32 기반 IoT 임베디드 시스템을 개발하며 스마트 공공조명, 환경 센서, 원격 제어, 독립형 태양광 시스템 등 실제 현장에서 운영되는 제품을 구축해 왔습니다. OOP 기반 펌웨어 아키텍처와 RTOS 독립적 모듈 구조로 프로젝트 간 코드 70% 이상 재사용, LoRaWAN·LTE Cat.M1·LwM2M·FOTA 등 원격 IoT 통신과 Watchdog·Auto-Recovery로 현장 운영 안정성을 개선합니다.',
+    'STM32와 ESP32로 실제 현장에서 운영되는 IoT 제품의 펌웨어를 개발해 왔습니다. OOP 기반 공통 아키텍처로 프로젝트 간 코드를 70% 이상 재사용하고, LoRaWAN·LTE Cat.M1·LwM2M 원격 통신과 Watchdog·Auto-Recovery, FOTA로 현장 출동을 최소화하면서 장비가 안정적으로 운영되도록 만듭니다.',
   contact: {
     email: 'js960426@gmail.com',
     phone: '+82 10-2058-4921',
@@ -105,8 +105,8 @@ export const profile = {
   ],
   howIWork: [
     {
-      title: '현상이 아니라 Root Cause를 찾습니다.',
-      body: 'Application → RTOS → Driver → Protocol → Modem → Sensor → PCB → Network까지 범위를 확장하며 원인을 단계적으로 좁힙니다. 센서 오차가 케이스 발열 문제였던 사례, OS 포팅 중 PCB Clock 결함을 발견한 경험이 있습니다.',
+      title: '증상이 아니라 근본 원인을 찾습니다.',
+      body: 'Application → RTOS → Driver → Protocol → Modem → Sensor → PCB → Network까지 범위를 확장하며 원인을 단계적으로 좁힙니다. 센서 오차의 원인이 케이스 내부 발열이었던 일, OS 포팅 중 PCB의 Clock 결함을 찾아낸 일이 대표적입니다.',
     },
     {
       title: '장애가 발생해도 스스로 복구할 수 있는 시스템을 설계합니다.',
@@ -114,11 +114,11 @@ export const profile = {
     },
     {
       title: '재사용할 수 없는 코드는 장기적인 비용이라고 생각합니다.',
-      body: '공통 영역은 Interface와 Base Class로 분리하고, 제품별 차이는 파생 클래스와 비즈니스 로직에 한정합니다. 실제 프로젝트에서 70% 이상 재사용, 신규 포팅 4일 완료 경험이 있습니다.',
+      body: '공통 영역은 Interface와 Base Class로 분리하고, 제품별 차이는 파생 클래스와 비즈니스 로직에 한정합니다. 실제 프로젝트에서 코드를 70% 이상 재사용했고, 신규 RTOS 포팅을 4일 만에 마쳤습니다.',
     },
     {
       title: '양산과 현장 작업까지 고려합니다.',
-      body: 'Plug & Play 초기화, Bootstrap, FOTA, Watchdog 등으로 수십·수백 대 설치 시 초기 설정·장애 복구·펌웨어 업데이트·설정 관리를 자동화합니다. 개발 완료가 아닌 운영까지가 펌웨어의 완성 시점입니다.',
+      body: 'Plug & Play 초기화, Bootstrap, FOTA, Watchdog 등으로 수십·수백 대를 설치할 때 필요한 초기 설정, 장애 복구, 펌웨어 업데이트를 자동화합니다. 펌웨어는 개발이 끝났을 때가 아니라 현장에서 안정적으로 돌아갈 때 완성된다고 생각합니다.',
     },
   ],
   education: {
@@ -131,7 +131,7 @@ export const profile = {
   },
   certifications: [
     '정보처리기사',
-    'SW개발_L3',
+    'SW개발 L3',
     '네트워크관리사 2급',
     '컴퓨터활용능력 2급',
   ],

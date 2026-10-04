@@ -45,9 +45,9 @@ export const projects: Project[] = [
     shortTitle: '양주 체육시설 스마트 조명',
     client: '양주도시공사',
     company: '(주)트로닉스',
-    periodHint: 'Tronix · e-IoT · 2026.05 — 2026.08 · 펌웨어 5명',
+    periodHint: 'Tronix · e-IoT · 2026.05 — 2026.08 · 5명',
     oneLiner:
-      '10개 체육시설의 예약 일정에 맞춰 조명을 자동 제어하고, 실제 소비 전력을 측정·정산하는 IoT 시스템. 전력량 측정, 조명 고장 감지, 캘린더 스케줄, Plug & Play 설치 구조를 추가해 공공시설에 납품.',
+      '10개 체육시설의 예약 일정에 맞춰 조명을 자동 제어하고, 실제 소비 전력을 측정해 정산까지 연결하는 IoT 시스템. 기존 플랫폼에 조명 고장 감지와 Plug & Play 설치 구조를 더해 공공시설에 납품.',
     role: 'FreeRTOS 펌웨어·비즈니스 로직 · CT Sensor 고장 감지 · RS-485 전력량계 · LwM2M · FOTA · Plug & Play',
     thumbnail: '/projects/yangju-sports-lighting.webp',
     breakImage: '/projects/yangju-sports-lighting-device.webp',
@@ -55,42 +55,42 @@ export const projects: Project[] = [
       name: '체육시설 스마트 조명·전력 관리',
       tagline: '예약 기반 조명 제어 + 소비전력 계측 + 원격 관제',
       points: [
-        '양주시 10개 체육시설에 예약 일정 연동 자동 조명 제어와 실제 소비 전력 측정·정산 기능을 제공한다.',
-        '기존 e-IoT 플랫폼에 전력량 측정, 조명 고장 감지, 캘린더 기반 자동 제어, Plug & Play 설치 구조를 추가했다.',
-        '시설 관리자가 현장 방문 없이 모바일·PC에서 조명 일정을 제어하고, 전력 사용량·요금 정산 데이터를 활용할 수 있다.',
+        '양주시 10개 체육시설에 예약 일정과 연동한 자동 조명 제어, 실제 소비 전력 측정·정산 기능 제공.',
+        '기존 e-IoT 플랫폼에 전력량 측정, 조명 고장 감지, 캘린더 기반 자동 제어, Plug & Play 설치 구조 추가.',
+        '시설 관리자가 현장 방문 없이 모바일·PC로 조명 일정 제어, 전력 사용량·요금 정산 데이터 활용.',
       ],
     },
     outcomes: [
       { label: '납품', before: '개발 중', after: '양주도시공사 검수 완료 · 10개 시설 적용' },
-      { label: '고장 감지', before: '고정 Threshold', after: '30일 주기 자가 학습형 판단 로직' },
+      { label: '고장 감지', before: '고정 임계값', after: '30일 주기 자가 학습형 판단 로직' },
       { label: '포팅', before: '—', after: '신규 펌웨어 4일 내 완료' },
       { label: '코드 재사용', before: '—', after: '기존 아키텍처 70% 이상 재사용' },
       { label: '현장 출장', before: '개발자 매번 방문', after: 'Plug & Play로 출장 리소스 80% 절감' },
     ],
     overview: [
-      '프로젝트 인원 5명. FreeRTOS 기반 펌웨어 및 비즈니스 로직 개발을 담당했다.',
-      'CT Sensor/ADC 기반 조명 고장 감지, RS-485 전력량계 연동, 캘린더 스케줄링, LwM2M 통신 안정화, FOTA, Plug & Play 초기화 시퀀스를 구현했다.',
-      '원격 FOTA로 현장 방문 없이 장애 대응이 가능하도록 설계했다.',
+      '프로젝트 인원 5명. FreeRTOS 기반 펌웨어 및 비즈니스 로직 개발 담당.',
+      'CT Sensor/ADC 기반 조명 고장 감지, RS-485 전력량계 연동, 캘린더 스케줄링, LwM2M 통신 안정화, FOTA, Plug & Play 초기화 시퀀스 구현.',
+      '원격 FOTA로 장애 대응을 위한 현장 방문을 최소화하도록 설계.',
     ],
     problem: [
       {
         heading: '공공 IoT 설치·운영 병목',
         items: [
           '대규모 설치 시 개발자가 현장에서 통신·서버 연결을 수동 확인해야 하는 구조',
-          '조명 고장을 고정 Threshold로만 판단하면 현장별 조명 특성·램프 노후화를 반영하기 어려움',
+          '조명 고장을 고정 임계값으로만 판단하면 현장별 조명 특성·램프 노후화를 반영하기 어려움',
           '순차 점등 시 대용량 부하 증가를 스파이크 노이즈로 오인하는 전력 측정 오류',
         ],
       },
     ],
     background: [
-      '기존 e-IoT 플랫폼의 공통 아키텍처를 경량화해 FreeRTOS 환경에 맞게 AsyncFramework를 적용했다.',
-      '관제 페이지 예약 일정과 연·월·일·요일·시간대 기반 스케줄 제어로 시설 관리 자동화를 목표로 했다.',
+      '기존 e-IoT 플랫폼의 공통 아키텍처를 경량화하고, FreeRTOS 환경에 맞춰 AsyncFramework 적용.',
+      '관제 페이지 예약 일정과 연·월·일·요일·시간대 기반 스케줄 제어로 시설 관리 자동화 목표.',
     ],
     work: [
       {
         title: 'FreeRTOS 기반 경량 펌웨어 구조',
         items: [
-          '불필요 기능 제거 및 사내 AsyncFramework FreeRTOS 경량화',
+          '불필요한 기능 제거, 사내 AsyncFramework를 FreeRTOS용으로 경량화',
           '연·월·일·요일·시간대 기반 스케줄 제어 로직 구현',
           '관제 예약 일정과 조명 타워 자동 동작 연동',
         ],
@@ -101,7 +101,7 @@ export const projects: Project[] = [
           'CT Sensor + ADC로 W 단위 소비전력 변환',
           '초기 점등 후 측정값을 기준값으로 EEPROM 저장',
           '30일마다 자동 재학습으로 램프 노후화 반영',
-          '관제 서버 Threshold 관리 및 고장 알림 연동',
+          '관제 서버 임계값 관리 및 고장 알림 연동',
         ],
       },
       {
@@ -125,16 +125,16 @@ export const projects: Project[] = [
       {
         title: '대용량 조명 부하를 스파이크 노이즈로 오인한 전력 측정 오류',
         problem:
-          '사내 테스트는 최대 1.2kW였으나 현장 램프 1개가 1.2~1.5kW. 500W 이상 변화를 스파이크로 무시하는 로직이 순차 점등의 정상 1kW+ 부하 증가를 누락시켰다.',
+          '사내 테스트 부하는 최대 1.2kW였지만 현장 램프는 1개당 1.2~1.5kW. 500W 이상 급변을 스파이크로 무시하던 로직이 순차 점등 시 정상적인 1kW 이상 부하 증가까지 누락.',
         solution:
-          '단순 Threshold를 상태 기반 판단으로 변경 — 급격한 변화 시 첫 값 보류, 다음 측정에서 동일 수준 유지 확인 후 실제 부하로 반영.',
+          '단순 임계값 방식을 상태 기반 판단으로 변경 — 급격한 변화 시 첫 값 보류, 다음 측정에서 동일 수준 유지 확인 후 실제 부하로 반영.',
         result:
           '실제 부하 증가와 순간 노이즈 구분. 당일 운영 종료 후 LwM2M FOTA로 원격 배포해 전력 정산 데이터 누락 방지.',
       },
     ],
     verification: [
       { area: '납품', detail: '양주도시공사 검수 완료 · 10개 체육시설 현장 적용' },
-      { area: 'FOTA', detail: '현장 방문 없이 펌웨어 원격 배포·장애 대응' },
+      { area: 'FOTA', detail: '펌웨어 원격 배포로 장애 대응 현장 방문 최소화' },
       { area: '설치', detail: 'Plug & Play로 개발자 현장 출장 80% 절감' },
     ],
     tooling: ['FreeRTOS', 'LwM2M', 'LTE Cat.M1', 'RS-485', 'CT Sensor / ADC', 'EEPROM', 'FOTA'],
@@ -144,7 +144,7 @@ export const projects: Project[] = [
       'Plug & Play 초기화 시퀀스로 대규모 설치 자동화',
     ],
     insights: [
-      '고정 Threshold보다 현장 특성을 학습하는 구조가 장기 운영에 유리하다.',
+      '고정 임계값보다 현장 특성을 학습하는 구조가 장기 운영에 유리하다.',
       '전력 측정은 단순 필터링이 아니라 상태 기반 판단이 정확도를 높인다.',
       '설치 자동화는 개발 완료만큼 현장 운영 비용 절감에 기여한다.',
     ],
@@ -158,7 +158,7 @@ export const projects: Project[] = [
     company: '(주)트로닉스',
     periodHint: 'Tronix · Off-grid · 2026.05 — 2026.07 · 6명',
     oneLiner:
-      '전력 인프라 부족 지역에 태양광 Off-grid 스마트 가로등 8대·중계기를 구축. MPPT/BMS 원격 모니터링, LoRaWAN·LTE 통신, 현지 망 불안정·배터리 지연 등 운영 제약 대응.',
+      '전력 인프라가 부족한 지역에 태양광 독립형 스마트 가로등 8대와 중계기를 구축. MPPT/BMS 상태를 LoRaWAN·LTE로 원격 모니터링하고, 현지 통신망 불안정과 배터리 공급 지연에 대응.',
     role: 'Zephyr 펌웨어 포팅 · MPPT RS-485 · BMS UART · LTE Watchdog/Auto-Recovery · 현지 교육',
     thumbnail: '/projects/uzbekistan-solar-streetlight.webp',
     breakImage: '/projects/uzbekistan-solar-streetlight-collage.webp',
@@ -167,7 +167,7 @@ export const projects: Project[] = [
       tagline: '독립형 태양광 + 원격 모니터링 + 에너지 절감 스케줄',
       points: [
         '우즈베키스탄 치르치크 외곽에 전력망 없이 태양광·배터리로 구동하는 스마트 가로등 시스템.',
-        'MPPT·BMS 정보를 LoRaWAN·LTE로 관제에 전달하고, 디밍 스케줄로 배터리 사용량을 관리한다.',
+        'MPPT/BMS 정보를 LoRaWAN·LTE로 관제에 전달하고, 디밍 스케줄로 배터리 사용량 관리.',
         '환경 센서·Edge AI(Jetson Nano)·교통 카메라까지 확장한 스마트시티 실증.',
       ],
     },
@@ -179,7 +179,7 @@ export const projects: Project[] = [
     ],
     overview: [
       '프로젝트 인원 6명. 기존 Zephyr 펌웨어의 태양광 기능 포팅·최적화, MPPT/BMS 드라이버, LTE Watchdog·Auto-Recovery, 현지 교육·장애 대응.',
-      '해외 구축 전 Fault Injection Test로 장애 시나리오를 사전 검증했다.',
+      '해외 구축 전 Fault Injection Test로 장애 시나리오 사전 검증.',
     ],
     problem: [
       {
@@ -223,9 +223,9 @@ export const projects: Project[] = [
       {
         title: '현지 LTE 망 품질 문제로 중계기 통신 단절',
         problem: '1차 설치 시 LTE 연결이 약 3분 주기로 반복 단절.',
-        analysis: '통신 모듈·펌웨어만이 아닌 현장 통신사 스캔·비교 — 특정 사업자 품질 문제 확인.',
+        analysis: '모듈·펌웨어뿐 아니라 현장에서 통신사별 신호를 스캔·비교해, 특정 통신사의 품질 문제임을 확인.',
         solution: '안정적 통신사 수동 고정 + Watchdog·Auto-Recovery(LTE 모듈 재초기화·재접속) 추가.',
-        result: '즉각 장애 해결 및 장기 운영 재발 방지.',
+        result: '단절 즉시 해소, 이후 장기 운영에서도 재발 없음.',
       },
       {
         title: '본품 배터리 지연 — 저전압 Shutdown 위험',
@@ -260,7 +260,7 @@ export const projects: Project[] = [
     company: '(주)트로닉스',
     periodHint: 'Tronix · e-IoT · 2025.01 — 2025.06 · 6명',
     oneLiner:
-      '공공조명 e-IoT 플랫폼을 환경·기상·교통 데이터 수집으로 확장. Quectel BG95 LTE Cat.M1, 기상 센서, Jetson Nano, LwM2M 연동.',
+      '공공조명 e-IoT 플랫폼을 환경·기상·교통 데이터 수집으로 확장. 기존 LoRaWAN에 LTE Cat.M1(Quectel BG95)을 추가하고, 기상 센서와 Jetson Nano 데이터를 LwM2M으로 수집.',
     role: 'BG95 드라이버 · 비즈니스 로직 · Zephyr AsyncFramework · RS-485/UART 연동',
     thumbnail: '/projects/smartcity-env-traffic.webp',
     breakImage: '/projects/smartcity-env-traffic-collage.webp',
@@ -324,7 +324,7 @@ export const projects: Project[] = [
         title: '강우량 데이터 초기화 주기 오류',
         problem: '강우 센서 누적 데이터가 약 2초마다 초기화되어 시간 단위 강우 통계 생성 불가.',
         solution:
-          '누적 초기화 60분, 서버 보고 10분(1시간 6개 누적 데이터). 서버와 협의해 현재·이전 누적값 차이 계산.',
+          '누적값 초기화 주기를 60분, 서버 보고 주기를 10분으로 변경(1시간에 누적값 6개). 서버에서 현재·이전 누적값의 차이로 10분 강우량을 계산하도록 협의.',
         result: '10분 단위 강우량·시간당 누적 강우량 모두 관제에서 확인 가능.',
       },
     ],
@@ -367,9 +367,9 @@ export const projects: Project[] = [
     outcomes: [
       { label: 'Join 시간', before: '최대 20분', after: '3분 이내' },
       { label: '중계기 수용', before: '20대', after: '68대' },
-      { label: '장애 대응', before: '현장 방문·수동 재부팅', after: '복구 시간 75% 단축' },
+      { label: '장애 대응', before: '현장 방문·수동 재부팅', after: '복구 시간 최대 75% 단축' },
       { label: 'Payload', before: '커스텀 패킷', after: 'TLV로 약 70% 절감' },
-      { label: '바이너리', before: '580KB', after: '411KB (HSI Clock 전환)' },
+      { label: '바이너리', before: '580KB', after: '411KB (메모리·Buffer 최적화)' },
     ],
     overview: [
       '1차: Mbed OS 펌웨어·커스텀 프로토콜·LoRaWAN·VCDIFF Delta FOTA.',
@@ -381,7 +381,7 @@ export const projects: Project[] = [
         items: [
           'Task Stack Overflow → Hard Fault',
           'LoRa 모뎀 커스텀 펌웨어 응답 불가 → 통신 정지',
-          'Zephyr 포팅 시 외부 HSE/RTC Clock 결함으로 부팅 중단',
+          'Zephyr 포팅 시 외부 HSE/LSE(RTC) Clock 결함으로 부팅 중단',
           'LoRaWAN 반이중 특성 미고려 시 충돌·데이터 유실',
         ],
       },
@@ -402,8 +402,7 @@ export const projects: Project[] = [
         title: '2차 — Zephyr·LwM2M 전환',
         items: [
           'Mbed→Zephyr, 커스텀→LwM2M/CoAP/TLV',
-          'Observe 기반 서버 주도 데이터 보고',
-          '실패 패킷 반복 대신 상태 확인 독립 패킷 복구 시퀀스',
+          '실패한 패킷을 무작정 재전송하지 않고, 상태를 먼저 확인한 뒤 독립 패킷으로 복구하는 시퀀스',
         ],
       },
       {
@@ -429,9 +428,9 @@ export const projects: Project[] = [
       },
       {
         title: '기존 PCB 외부 Clock 결함',
-        problem: 'Zephyr 커널 초기화에서 부팅 중단 — 외부 HSE/RTC 미동작.',
+        problem: 'Zephyr 커널 초기화에서 부팅 중단 — 외부 HSE/LSE(RTC) 미동작.',
         solution:
-          'Device Tree·Clock를 HSI 내부 Clock으로 변경, Buffer·Stack·메모리 최적화. 보드 교체 없이 신규 펌웨어 운영.',
+          'Device Tree·Clock을 HSI 내부 Clock으로 변경, Buffer·Stack·메모리 최적화. 보드 교체 없이 신규 펌웨어 운영.',
         result: '바이너리 580KB→411KB, 하드웨어 교체 비용 없이 생명주기 연장.',
       },
     ],
@@ -459,7 +458,7 @@ export const projects: Project[] = [
     company: '(주)트로닉스',
     periodHint: 'Tronix · Mbed OS · 2023.01 — 2023.12 · 5명',
     oneLiner:
-      '조명 제어 중심 제품을 환경 센서·Edge AI·태양광 BMS/MPPT·LoRaWAN을 연결하는 범용 스마트시티 IoT 플랫폼 초기 코어. 이후 다수 공공 IoT 프로젝트의 기반 펌웨어.',
+      '조명 제어 중심이던 제품을 환경 센서, Edge AI, 태양광 BMS/MPPT, LoRaWAN까지 연결하는 범용 IoT 플랫폼으로 확장한 초기 코어 펌웨어. 이후 여러 공공 IoT 프로젝트의 기반 펌웨어로 사용.',
     role: 'Mbed OS 시스템·비즈니스 로직 · UART/SPI/QSPI · 센서 통합 · LoRaWAN 프로토타입',
     thumbnail: '/projects/smartcity-iot-platform.webp',
     breakImage: '/projects/smartcity-iot-platform-collage.webp',
@@ -541,8 +540,8 @@ export const projects: Project[] = [
     company: '(주)트로닉스',
     periodHint: 'Tronix · ESP32 · 2022.08 — 2023.05 · 4명',
     oneLiner:
-      'ESP32 + Arduino로 5종 공기질 센서 데이터 수집·Wi-Fi JSON 전송. UART/I2C/SPI 다중 센서, 98%+ 전송 성공률, 온도 오차 3~3.5℃ → 하드웨어·펌웨어 통합 개선.',
-    role: '펌웨어 비즈니스 로직 전담 · ESP32 · 다중 센서 · JSON Wi-Fi 통신 · Driver 리팩토링',
+      'ESP32 하나로 5종 공기질 센서 데이터를 수집해 Wi-Fi(JSON)로 전송. 전송 성공률 98% 이상, 최대 3.5℃였던 온도 오차를 기구·센서·펌웨어 개선으로 해결.',
+    role: '펌웨어 비즈니스 로직 전담 · ESP32 · 다중 센서 · JSON Wi-Fi 통신 · 드라이버 리팩토링',
     thumbnail: '/projects/sendori-air-quality.webp',
     breakImage: '/projects/sendori-air-quality-collage.webp',
     service: {
@@ -551,7 +550,7 @@ export const projects: Project[] = [
       points: [
         '온도·습도·미세먼지·CO₂·TVOC 등 5종 공기질 데이터 통합 수집.',
         '하나의 ESP32에서 센서 수집과 Wi-Fi 서버 통신 동시 수행.',
-        '센서→PCB→기구→Firmware 전체 분석으로 측정 오차 해결.',
+        '센서→PCB→기구→펌웨어 전체 분석으로 측정 오차 해결.',
       ],
     },
     outcomes: [
@@ -560,7 +559,7 @@ export const projects: Project[] = [
       { label: '습도', before: '—', after: '기준 대비 ±2%' },
     ],
     overview: [
-      '프로젝트 인원 4명. 펌웨어 비즈니스 로직 전담, ESP32 시스템, 5종 센서 연동, JSON 통신, 센서 변경 Driver 리팩토링.',
+      '프로젝트 인원 4명. 펌웨어 비즈니스 로직 전담, ESP32 시스템, 5종 센서 연동, JSON 통신, 센서 변경 드라이버 리팩토링.',
     ],
     problem: [
       {
@@ -596,7 +595,7 @@ export const projects: Project[] = [
         items: [
           '35mm 배기팬, 발열 센서 위치 변경, 격벽 추가',
           'SHT40(온습도) + SGP30(TVOC) 독립 센서로 교체',
-          'I2C Driver·수집 로직 리팩토링',
+          'I2C 드라이버·수집 로직 리팩토링',
         ],
       },
     ],
@@ -607,8 +606,8 @@ export const projects: Project[] = [
         analysis:
           '케이스 장착/탈거, 배기팬, 센서 자체 오차 비교 — 통합 센서 오차 + 케이스 내부 발열 복합 원인.',
         solution:
-          '기구 개선(팬·격벽·위치) + SHT40/SGP30 독립 센서 + I2C Driver 리팩토링.',
-        result: '온도·습도 기준 장비 수준. Sensor→PCB→기구→Firmware 통합 분석 경험.',
+          '기구 개선(팬·격벽·위치) + SHT40/SGP30 독립 센서 + I2C 드라이버 리팩토링.',
+        result: '온도·습도 기준 장비 수준. 센서→PCB→기구→펌웨어 통합 분석 경험.',
       },
     ],
     verification: [
@@ -618,10 +617,10 @@ export const projects: Project[] = [
     tooling: ['ESP32', 'Arduino Framework', 'UART', 'I2C', 'SPI', 'Wi-Fi', 'JSON'],
     contribution: [
       '펌웨어 비즈니스 로직·센서 수집·Wi-Fi 통신 전담',
-      '센서 교체 Driver 리팩토링 및 하드웨어 협업',
+      '센서 교체 드라이버 리팩토링 및 하드웨어 협업',
     ],
     insights: [
-      '측정 오차는 펌웨어만이 아닌 Sensor→PCB→기구→Firmware 전체 시스템 문제일 수 있다.',
+      '측정 오차는 펌웨어만이 아닌 센서→PCB→기구→펌웨어 전체 시스템 문제일 수 있다.',
       '단일 MCU(Wi-Fi 내장)는 IoT 원가·개발 기간에 유리하다.',
     ],
   },
