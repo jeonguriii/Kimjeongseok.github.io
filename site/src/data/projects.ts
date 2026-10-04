@@ -63,7 +63,7 @@ export const projects: Project[] = [
     outcomes: [
       { label: '납품', before: '—', after: '양주도시공사 검수 완료 · 체육시설 10곳 적용' },
       { label: '고장 감지', before: '고정 임계값', after: '30일 주기 자가 학습형 판단 로직' },
-      { label: '포팅', before: '—', after: '신규 펌웨어 4일 내 완료' },
+      { label: '포팅', before: '—', after: 'Zephyr → FreeRTOS 6일, 안정화 2주 (비즈니스 로직 무변경)' },
       { label: '코드 재사용', before: '—', after: '기존 아키텍처 70% 이상 재사용' },
       { label: '설치 및 유지보수', before: '개발자 매번 방문', after: 'Plug & Play·FOTA로 출장 리소스 80% 절감' },
     ],

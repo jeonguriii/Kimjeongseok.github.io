@@ -22,14 +22,15 @@ export const profile = {
       focus: 'STM32·ESP32 IoT 펌웨어 · OOP 아키텍처 · LoRaWAN/LTE/LwM2M · FOTA',
       products: '스마트 공공조명 · 환경 센서 · 독립형 태양광 · e-IoT 플랫폼',
       bullets: [
-        'STM32 기반 스마트 공공조명 및 IoT 제품군 펌웨어 설계·개발',
-        'Mbed OS, Zephyr OS, FreeRTOS 기반 시스템 설계 및 제품 포팅',
-        'OOP 기반 공통 아키텍처로 프로젝트 간 코드 재사용률 70% 이상 확보',
-        'LoRaWAN, LTE Cat.M1, LwM2M 기반 원격 통신 시스템 개발',
-        'Watchdog 및 Auto-Recovery 구조를 통한 현장 운영 안정성 개선',
-        'OTA/FOTA 시스템 구축 및 원격 유지보수 프로세스 적용',
+        'STM32·ESP32 기반 스마트 공공조명·환경 센서·독립형 태양광 IoT 제품 펌웨어 설계·개발',
+        'Mbed OS·Zephyr OS·FreeRTOS 기반 시스템 설계, 비즈니스 로직 변경 없이 OS 계층만 교체해 Zephyr → FreeRTOS 포팅 6일·안정화 2주',
+        'OOP 공통 아키텍처로 프로젝트 간 코드 70% 이상 재사용',
+        'LoRaWAN 단말 통신 구조 재설계로 Join 시간 최대 20분 → 3분 이내, 중계기당 동시 통신 단말 20대 → 68대 이상',
+        'LTE Cat.M1(Quectel BG95)·LwM2M 원격 통신을 추가해 LoRaWAN 중심 제품군 확장',
+        'Watchdog·Auto-Recovery 구조로 장애 복구 시간 최대 75% 단축',
+        'Plug & Play 설치 구조와 LwM2M FOTA로 개발자 현장 출장 80% 절감',
         'UART, SPI, I2C, RS-485 기반 센서·통신 모듈 드라이버 개발',
-        '공공기관 및 해외 실증 프로젝트 현장 구축·기술 지원',
+        '양주도시공사·서산시 납품, 우즈베키스탄 해외 실증 현장 구축·기술 지원',
       ],
     },
     {
@@ -70,7 +71,7 @@ export const profile = {
       items: [
         'OOP 기반 계층 분리·통신 모듈 추상화',
         '하드웨어·RTOS 변경 대응 설계',
-        '코드 재사용률 70%+ · 신규 포팅 4일',
+        '코드 재사용률 70%+ · RTOS 포팅 6일 (비즈니스 로직 무변경)',
       ],
     },
     {
@@ -114,7 +115,7 @@ export const profile = {
     },
     {
       title: '재사용할 수 없는 코드는 장기적인 비용이라고 생각합니다.',
-      body: '공통 영역은 Interface와 Base Class로 분리하고, 제품별 차이는 파생 클래스와 비즈니스 로직에 한정합니다. 실제 프로젝트에서 코드를 70% 이상 재사용했고, 신규 RTOS 포팅을 4일 만에 마쳤습니다.',
+      body: '공통 영역은 Interface와 Base Class로 분리하고, 제품별 차이는 파생 클래스와 비즈니스 로직에 한정합니다. 실제 프로젝트에서 코드를 70% 이상 재사용했고, Zephyr에서 FreeRTOS로 옮길 때도 비즈니스 로직은 그대로 두고 OS 계층만 바꿔 포팅 6일과 안정화 2주 만에 전환을 마쳤습니다.',
     },
     {
       title: '양산과 현장 작업까지 고려합니다.',
