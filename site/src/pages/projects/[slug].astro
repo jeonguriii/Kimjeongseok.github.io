@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { profile } from '../../data/profile';
 import { getProject, publishedProjects } from '../../data/projects';
+import { getStory, stories } from '../../data/stories';
 import { withBase } from '../../utils/url';
 import '../../styles/case.css';
 
@@ -13,34 +14,45 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const project = getProject(slug!);
+const story = getStory(slug!);
 
-if (!project) {
+if (!project || !story) {
   return Astro.redirect(withBase('/'));
 }
 
 const toc = [
-  { id: 'service', label: 'The service' },
-  { id: 'outcomes', label: 'Outcomes' },
-  { id: 'overview', label: 'This project' },
-  { id: 'problem', label: 'Problem' },
-  { id: 'background', label: 'Background' },
-  { id: 'work', label: 'What I did' },
-  ...(project.troubleshooting?.length
-    ? [{ id: 'troubleshooting', label: 'Trouble Shooting' }]
-    : []),
-  { id: 'verification', label: 'Verification' },
-  { id: 'tooling', label: 'Tooling' },
-  { id: 'contribution', label: 'Contribution' },
-  { id: 'insight', label: 'Insight' },
+  ...(story.metrics ? [{ id: 'outcomes', label: '한눈에' }] : []),
+  ...(story.parts
+    ? story.parts.map((pt, i) => ({ id: `part-${i + 1}`, label: pt.title }))
+    : story.steps.map((s) => ({ id: s.key, label: s.label }))),
+  ...(story.after ? [{ id: 'after', label: story.after.label }] : []),
 ];
 
-const others = publishedProjects.filter((p) => p.slug !== project.slug);
+// 본문 줄을 문단과 목록으로 묶음 ('- '로 시작하면 목록)
+const group = (lines: string[]) => {
+  const out: { kind: 'p' | 'ul'; items: string[] }[] = [];
+  for (const line of lines) {
+    if (line.startsWith('- ')) {
+      const last = out.at(-1);
+      if (last && last.kind === 'ul') last.items.push(line.slice(2));
+      else out.push({ kind: 'ul', items: [line.slice(2)] });
+    } else {
+      out.push({ kind: 'p', items: [line] });
+    }
+  }
+  return out;
+};
+
+const sections = story.parts ?? [{ title: '', heading: '', steps: story.steps }];
+
+const order = stories.map((s) => s.slug);
+const others = publishedProjects
+  .filter((p) => p.slug !== project.slug)
+  .sort((a, b) => order.indexOf(a.slug) - order.indexOf(b.slug));
+const titleOf = (s: string) => getStory(s)?.title ?? s;
 ---
 
-<BaseLayout
-  title={`${project.shortTitle} · ${profile.name}`}
-  description={project.oneLiner}
->
+<BaseLayout title={`${story.title} · ${profile.name}`} description={story.heading}>
   <article class="case">
     <div class="case__progress" aria-hidden="true">
       <span data-progress></span>
@@ -60,12 +72,10 @@ const others = publishedProjects.filter((p) => p.slug !== project.slug);
         />
       </div>
       <div class="case__intro case-wrap">
-        <p class="meta">
-          {project.client} · {project.periodHint}
-        </p>
-        <h1 class="case__title">{project.title}</h1>
-        <p class="case__lead">{project.oneLiner}</p>
-        <p class="case__role">{project.role}</p>
+        <p class="meta">{story.period} · {story.meta}</p>
+        <h1 class="case__title">{story.title}</h1>
+        <p class="case__lead">{story.heading}</p>
+        <p class="case__role">{story.role}</p>
       </div>
     </header>
 
@@ -84,194 +94,120 @@ const others = publishedProjects.filter((p) => p.slug !== project.slug);
       </nav>
 
       <div class="case__main">
-        <section class="block" id="service" aria-label="서비스 소개">
+        <section class="block" aria-label="어떤 제품인가">
           <div class="block__grid">
-            <h2 class="block__h">The service</h2>
+            <h2 class="block__h">어떤 제품인가</h2>
             <div>
-              <p class="service__name">{project.service.name}</p>
-              <p class="service__tag">{project.service.tagline}</p>
-              {project.service.points.map((p) => <p class="block__p">{p}</p>)}
-            </div>
-          </div>
-        </section>
-
-        <section class="block" id="outcomes" aria-label="성과">
-          <div class="block__grid">
-            <h2 class="block__h">Outcomes</h2>
-            <ul class="outcomes">
-              {
-                project.outcomes.map((item) => (
-                  <li>
-                    <p class="outcomes__label">{item.label}</p>
-                    <p class="outcomes__change">
-                      {item.before.trim() !== '' && item.before !== '—' && (
-                        <>
-                          <span>{item.before}</span>
-                          <span class="outcomes__arrow" aria-hidden="true">
-                            →
-                          </span>
-                        </>
-                      )}
-                      <strong>{item.after}</strong>
-                    </p>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </section>
-
-        <div class="break" aria-hidden="true">
-          <img src={withBase(project.breakImage ?? project.thumbnail)} alt="" width="1600" height="900" loading="lazy" />
-        </div>
-
-        <section class="block" id="overview" aria-label="프로젝트 개요">
-          <div class="block__grid">
-            <h2 class="block__h">This project</h2>
-            <div>
-              {project.overview.map((p) => <p class="block__p">{p}</p>)}
-            </div>
-          </div>
-        </section>
-
-        <section class="block block--shift" id="problem" aria-label="문제">
-          <div class="block__grid">
-            <h2 class="block__h">Problem</h2>
-            <div>
-              {
-                project.problem.map((block) => (
-                  <div class="work">
-                    <h3 class="work__title">{block.heading}</h3>
-                    <ul class="work__list">
-                      {block.items.map((item) => (
-                        <li>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-        </section>
-
-        <section class="block" id="background" aria-label="배경">
-          <div class="block__grid">
-            <h2 class="block__h">Background</h2>
-            <div>
-              {project.background.map((p) => <p class="block__p">{p}</p>)}
-              {
-                project.questions && project.questions.length > 0 ? (
-                  <div class="work">
-                    <h3 class="work__title">QA로 던진 질문</h3>
-                    <ul class="work__list">
-                      {project.questions.map((q) => (
-                        <li>{q}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : null
-              }
-            </div>
-          </div>
-        </section>
-
-        <section class="block" id="work" aria-label="수행">
-          <div class="block__grid">
-            <h2 class="block__h">What I did</h2>
-            <div>
-              {
-                project.work.map((block) => (
-                  <div class="work">
-                    <h3 class="work__title">{block.title}</h3>
-                    <ul class="work__list">
-                      {block.items.map((item) => (
-                        <li>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))
-              }
+              <p class="block__p">{story.product}</p>
             </div>
           </div>
         </section>
 
         {
-          project.troubleshooting && project.troubleshooting.length > 0 ? (
-            <section
-              class="block block--shift"
-              id="troubleshooting"
-              aria-label="트러블슈팅"
-            >
+          story.extras ? (
+            <section class="block" aria-label={story.extras.title}>
               <div class="block__grid">
-                <h2 class="block__h">Trouble Shooting</h2>
-                <div>
-                  {project.troubleshooting.map((ts) => (
-                    <div class="work">
-                      <h3 class="work__title">{ts.title}</h3>
-                      <p class="block__p">
-                        <strong>문제</strong> — {ts.problem}
-                      </p>
-                      {ts.analysis ? (
-                        <p class="block__p">
-                          <strong>분석</strong> — {ts.analysis}
-                        </p>
-                      ) : null}
-                      <p class="block__p">
-                        <strong>해결</strong> — {ts.solution}
-                      </p>
-                      <p class="block__p">
-                        <strong>결과</strong> — {ts.result}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+                <h2 class="block__h">{story.extras.title}</h2>
+                <ul class="work__list">
+                  {story.extras.items.map((raw) => {
+                    const it = raw.replace(/^- /, '');
+                    const m = it.match(/^([^:：]{1,16}): (.*)$/);
+                    return m ? (
+                      <li>
+                        <strong>{m[1]}</strong> — {m[2]}
+                      </li>
+                    ) : (
+                      <li>{it}</li>
+                    );
+                  })}
+                </ul>
               </div>
             </section>
           ) : null
         }
 
-        <section class="block block--shift" id="verification" aria-label="검증">
-          <div class="block__grid">
-            <h2 class="block__h">Verification</h2>
-            <ul class="verify">
-              {
-                project.verification.map((row) => (
-                  <li>
-                    <span class="verify__area">{row.area}</span>
-                    <span class="verify__detail">{row.detail}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </section>
+        {
+          story.metrics ? (
+            <section class="block" id="outcomes" aria-label="한눈에">
+              <div class="block__grid">
+                <h2 class="block__h">한눈에</h2>
+                <ul class="outcomes">
+                  {story.metrics.map((m) => (
+                    <li>
+                      <p class="outcomes__label">{m.label}</p>
+                      <p class="outcomes__change">
+                        <strong>{m.value}</strong>
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          ) : null
+        }
 
-        <section class="block" id="tooling" aria-label="도구">
-          <div class="block__grid">
-            <h2 class="block__h">Tooling</h2>
-            <ul class="tools">
-              {project.tooling.map((item) => <li>{item}</li>)}
-            </ul>
-          </div>
-        </section>
+        {
+          sections.map((sec, si) => (
+            <>
+              {sec.title ? (
+                <section class="block part" id={`part-${si + 1}`} aria-label={sec.title}>
+                  <p class="part__no">이야기 {si + 1}</p>
+                  <h2 class="part__title">{sec.title}</h2>
+                  {sec.heading ? <p class="part__heading">{sec.heading}</p> : null}
+                </section>
+              ) : null}
+              {sec.steps.map((step, n) => (
+                <section
+                  class:list={['block', 'step', (step.key === 'analysis' || step.key === 'result') && 'block--shift']}
+                  id={sec.title ? `part-${si + 1}-${step.key}` : step.key}
+                  aria-label={step.label}
+                >
+                  <div class="block__grid">
+                    <h2 class="block__h">
+                      <span class="step__n">{String(n + 1).padStart(2, '0')}</span>
+                      {step.label}
+                    </h2>
+                    <div>
+                      {group(step.body).map((g, gi) =>
+                        g.kind === 'ul' ? (
+                          <ul class="work__list">
+                            {g.items.map((it) => {
+                              const m = it.match(/^([^:：]{1,16}): (.*)$/);
+                              return m ? (
+                                <li>
+                                  <strong>{m[1]}</strong> — {m[2]}
+                                </li>
+                              ) : (
+                                <li>{it}</li>
+                              );
+                            })}
+                          </ul>
+                        ) : (step.key === 'problem' || step.key === 'solution') && gi === 0 && step.body.length > 1 && step.body[1].startsWith('- ') ? (
+                          <p class="block__p step__lead">{g.items[0]}</p>
+                        ) : (
+                          <p class="block__p">{g.items[0]}</p>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                </section>
+              ))}
+            </>
+          ))
+        }
 
-        <section class="block" id="contribution" aria-label="기여">
-          <div class="block__grid">
-            <h2 class="block__h">Contribution</h2>
-            <ul class="work__list">
-              {project.contribution.map((item) => <li>{item}</li>)}
-            </ul>
-          </div>
-        </section>
-
-        <section class="block" id="insight" aria-label="인사이트">
-          <div class="block__grid">
-            <h2 class="block__h">Insight</h2>
-            <ul class="insights">
-              {project.insights.map((item) => <li>{item}</li>)}
-            </ul>
-          </div>
-        </section>
+        {
+          story.after ? (
+            <section class="block" id="after" aria-label={story.after.label}>
+              <div class="block__grid">
+                <h2 class="block__h">{story.after.label}</h2>
+                <div>
+                  <p class="block__p">{story.after.text}</p>
+                </div>
+              </div>
+            </section>
+          ) : null
+        }
 
         <section class="more" aria-label="다른 프로젝트">
           <h2 class="block__h">More projects</h2>
@@ -288,7 +224,7 @@ const others = publishedProjects.filter((p) => p.slug !== project.slug);
                       loading="lazy"
                       style={`view-transition-name: project-${p.slug}`}
                     />
-                    <span>{p.shortTitle}</span>
+                    <span>{titleOf(p.slug)}</span>
                   </a>
                 </li>
               ))
@@ -300,3 +236,52 @@ const others = publishedProjects.filter((p) => p.slug !== project.slug);
     </div>
   </article>
 </BaseLayout>
+
+<style>
+  .step__n {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    color: var(--mute);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.2rem;
+  }
+
+  .step__lead {
+    font-weight: 650;
+    color: var(--ink);
+  }
+
+  .step[id$='result'] .block__h {
+    color: var(--brass);
+  }
+
+  .part {
+    padding-top: 3.5rem;
+    border-top: 2px solid var(--ink);
+  }
+
+  .part__no {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    color: var(--mute);
+  }
+
+  .part__title {
+    margin: 0.35rem 0 0;
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    font-weight: 750;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  .part__heading {
+    margin: 0.5rem 0 0;
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--teal);
+  }
+</style>
