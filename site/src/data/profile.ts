@@ -24,12 +24,12 @@ export const profile = {
       products: '스마트 공공조명 · 환경 센서 · 독립형 태양광 · e-IoT 플랫폼',
       bullets: [
         'STM32·ESP32 기반 스마트 공공조명·환경 센서·독립형 태양광 IoT 제품 펌웨어 설계·개발',
-        'Mbed OS·Zephyr OS·FreeRTOS 기반 시스템 설계, 비즈니스 로직 변경 없이 OS 계층만 교체해 Zephyr → FreeRTOS 포팅 6일·안정화 2주',
-        'OOP 공통 아키텍처로 프로젝트 간 코드 70% 이상 재사용',
-        '서산 2차년도 재설계로 Join 시간 최대 20분 → 3분 이내',
-        'LTE Cat.M1(Quectel BG95)·LwM2M 원격 통신을 추가해 LoRaWAN 중심 제품군 확장, NAT Timeout 대응으로 원격 응답 10~20초 → 5초 이내',
-        '서산 2차년도 재설계로 Hard Fault 발생 건수 1차년도 대비 약 75% 감소, Watchdog 적용으로 남은 장애도 현장 방문 없이 복구',
-        'Plug & Play 설치 구조와 LwM2M FOTA로 양주 설치·업데이트 때 개발자 현장 방문을 줄이고, 펌웨어 업데이트도 현장 방문 없이 원격으로 배포',
+        'OOP 기반 아키텍처로 드라이버와 비즈니스 로직을 분리, Zephyr OS → FreeRTOS 전환 시 비즈니스 로직 변경 없이 OS 계층만 교체해 포팅 6일·안정화 2주',
+        'LTE Cat.M1(Quectel BG95)·LwM2M 원격 통신을 추가해 LoRaWAN 중심 제품군 확장',
+        '서산: 2차년도 재설계로 Hard Fault 발생 건수 1차년도 대비 약 75% 감소, Watchdog 적용으로 남은 장애도 현장 방문 없이 복구',
+        '서산: LoRa 모듈 커스텀 펌웨어를 제조사 순정 펌웨어 + AT 커맨드 구조로 전환해 Join 시간 최대 20분 → 3분 이내',
+        '양주: RRC IDLE 페이징 지연을 QENG 계측으로 찾아 7초 CoAP Ping keep-alive·PSM 해제로 해결, 원격 응답 10~20초 → 평균 약 2초',
+        '양주: Plug & Play 설치 구조와 LwM2M FOTA로 개발자는 첫 설치·최종 점검 때만 현장 방문, 펌웨어 업데이트는 원격 배포',
         'UART, SPI, I2C, RS-485 기반 센서·통신 모듈 드라이버 개발',
         '양주도시공사·서산시 납품, 우즈베키스탄 해외 실증 현장 구축·기술 지원',
       ],
@@ -72,14 +72,14 @@ export const profile = {
       items: [
         'OOP 기반 계층 분리·통신 모듈 추상화',
         '하드웨어·RTOS 변경 대응 설계',
-        '코드 재사용률 70%+ · RTOS 포팅 6일 (비즈니스 로직 무변경)',
+        'RTOS 포팅 6일 (비즈니스 로직 무변경)',
       ],
     },
     {
       group: 'Network / IoT',
       items: [
         'LoRaWAN — Join 최적화·다운링크 충돌 방지·예외 처리',
-        'LTE Cat.M1 — Quectel BG95, AT Command, PPP, NAT Timeout 대응',
+        'LTE Cat.M1 — Quectel BG95, AT Command, PPP, RRC·PSM 상태 관리',
         'LwM2M / CoAP — Bootstrap, Observe, FOTA, TLV',
       ],
     },
@@ -116,7 +116,7 @@ export const profile = {
     },
     {
       title: '재사용할 수 없는 코드는 장기적인 비용이라고 생각합니다.',
-      body: '공통 영역은 Interface와 Base Class로 분리하고, 제품별 차이는 파생 클래스와 비즈니스 로직에 한정합니다. 실제 프로젝트에서 코드를 70% 이상 재사용했고, Zephyr에서 FreeRTOS로 옮길 때도 비즈니스 로직은 그대로 두고 OS 계층만 바꿔 포팅 6일과 안정화 2주 만에 전환을 마쳤습니다.',
+      body: '공통 영역은 Interface와 Base Class로 분리하고, 제품별 차이는 파생 클래스와 비즈니스 로직에 한정합니다. Zephyr에서 FreeRTOS로 옮길 때도 비즈니스 로직은 그대로 두고 OS 계층만 바꿔 포팅 6일과 안정화 2주 만에 전환을 마쳤습니다.',
     },
     {
       title: '양산과 현장 작업까지 고려합니다.',

@@ -412,3 +412,12 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* 서술 문단 뒤에 붙는 정리 목록 */
+.case .block__p + .work__list {
+  margin-top: 1.25rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--sheet);
+  border-left: 2px solid var(--teal);
+  font-size: 0.92rem;
+}

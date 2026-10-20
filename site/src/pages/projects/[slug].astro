@@ -45,6 +45,14 @@ const group = (lines: string[]) => {
 
 const sections = story.parts ?? [{ title: '', heading: '', steps: story.steps }];
 
+// 본문 문단의 **강조**를 굵게 표시 (HTML은 이스케이프)
+const rich = (t: string) =>
+  t
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
 const order = stories.map((s) => s.slug);
 const others = publishedProjects
   .filter((p) => p.slug !== project.slug)
@@ -183,9 +191,9 @@ const titleOf = (s: string) => getStory(s)?.title ?? s;
                             })}
                           </ul>
                         ) : (step.key === 'problem' || step.key === 'solution') && gi === 0 && step.body.length > 1 && step.body[1].startsWith('- ') ? (
-                          <p class="block__p step__lead">{g.items[0]}</p>
+                          <p class="block__p step__lead" set:html={rich(g.items[0])} />
                         ) : (
-                          <p class="block__p">{g.items[0]}</p>
+                          <p class="block__p" set:html={rich(g.items[0])} />
                         ),
                       )}
                     </div>
