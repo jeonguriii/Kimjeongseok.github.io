@@ -176,6 +176,7 @@ const titleOf = (s: string) => getStory(s)?.title ?? s;
                       {step.label}
                     </h2>
                     <div>
+                      {step.summary ? <p class="step__head">{step.summary}</p> : null}
                       {group(step.body).map((g, gi) =>
                         g.kind === 'ul' ? (
                           <ul class="work__list">
@@ -190,7 +191,7 @@ const titleOf = (s: string) => getStory(s)?.title ?? s;
                               );
                             })}
                           </ul>
-                        ) : (step.key === 'problem' || step.key === 'solution') && gi === 0 && step.body.length > 1 && step.body[1].startsWith('- ') ? (
+                        ) : !step.summary && (step.key === 'problem' || step.key === 'solution') && gi === 0 && step.body.length > 1 && step.body[1].startsWith('- ') ? (
                           <p class="block__p step__lead" set:html={rich(g.items[0])} />
                         ) : (
                           <p class="block__p" set:html={rich(g.items[0])} />
@@ -254,6 +255,15 @@ const titleOf = (s: string) => getStory(s)?.title ?? s;
     color: var(--mute);
     font-variant-numeric: tabular-nums;
     margin-bottom: 0.2rem;
+  }
+
+  .step__head {
+    margin: 0 0 0.9rem;
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: -0.025em;
+    color: var(--ink);
   }
 
   .step__lead {
