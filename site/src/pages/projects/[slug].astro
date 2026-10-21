@@ -60,7 +60,7 @@ const others = publishedProjects
 const titleOf = (s: string) => getStory(s)?.title ?? s;
 ---
 
-<BaseLayout title={`${story.title} · ${profile.name}`} description={story.heading}>
+<BaseLayout title={`${story.title} · ${profile.name}`} description={story.heading} image={`/projects/og-${project.slug}.jpg`}>
   <article class="case">
     <div class="case__progress" aria-hidden="true">
       <span data-progress></span>
